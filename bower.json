@@ -1,0 +1,10 @@
+{
+    "name": "travi-core",
+    "dependencies": {
+        "amplify": "1.1.x",
+        "jquery": "1.7.2",
+        "jquery-ui": "1.9.1",
+        "jquery.form": "latest",
+        "jsrender": "latest"
+    }
+}
