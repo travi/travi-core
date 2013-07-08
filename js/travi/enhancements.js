@@ -86,7 +86,7 @@
 
     function init() {
         setInitialEnhancementVersion();
-        $(addLinksToChooseVersion);
+        addLinksToChooseVersion();
     }
 
     travi.namespace('enhancements', {

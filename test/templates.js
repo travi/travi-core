@@ -37,6 +37,7 @@ travi.test.testCase("TemplateTests", (function () {
                         return promiseToReturn;
                     },
                     resolve: function () {
+                        return;
                     }
                 };
 
@@ -127,8 +128,7 @@ travi.test.testCase("TemplateTests", (function () {
                 dataForTemplate = {
                     data: 'something'
                 },
-                callback = sinon.spy(),
-                renderedTemplate = 'renderedTemplate';
+                callback = sinon.spy();
 
             travi.test.common.restore($.ajax);
             sinon.stub($, 'ajax');

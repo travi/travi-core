@@ -1,4 +1,4 @@
-travi.test.testCase('PubSubTests', (function () {
+travi.test.testCase('PubSubTests', (function (global) {
     'use strict';
 
     return {
@@ -7,20 +7,25 @@ travi.test.testCase('PubSubTests', (function () {
 
         eventName: 'some-event',
         callback: function () {
+            return;
         },
         data: {},
 
+        setUp: function() {
+            sinon.stub(global.amplify, 'publish');
+            sinon.stub(global.amplify, 'subscribe');
+            sinon.stub(global.amplify, 'unsubscribe');
+        },
+
         tearDown: function () {
             this.common.restore([
-                amplify.publish,
-                amplify.subscribe,
-                amplify.unsubscribe
+                global.amplify.publish,
+                global.amplify.subscribe,
+                global.amplify.unsubscribe
             ]);
         },
 
         'test publish mapped to amplify': function () {
-            sinon.spy(amplify, 'publish');
-
             this.events.publish(this.eventName, this.data);
 
             assert.calledOnce(amplify.publish);
@@ -28,8 +33,6 @@ travi.test.testCase('PubSubTests', (function () {
         },
 
         'test subscribe mapped to amplify': function () {
-            sinon.spy(amplify, 'subscribe');
-
             this.events.subscribe(this.eventName, this.callback);
 
             assert.calledOnce(amplify.subscribe);
@@ -37,12 +40,10 @@ travi.test.testCase('PubSubTests', (function () {
         },
 
         'test unsubscribe mapped to amplify': function () {
-            sinon.spy(amplify, 'unsubscribe');
-
             this.events.unsubscribe(this.eventName, this.callback);
 
             assert.calledOnce(amplify.unsubscribe);
             assert.calledWith(amplify.unsubscribe, this.eventName, this.callback);
         }
     };
-}()));
+}(this)));

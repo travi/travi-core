@@ -10,22 +10,24 @@ config["framework tests"] = {
     libs: [
         'test/js/stubs/*.js',
 
-        'client/thirdparty/jquery/jquery.js',
-        'client/thirdparty/jquery/plugins/validation/jquery.validate.js',
-        'client/thirdparty/jquery/**/*.js'
+        'bower_components/jquery/jquery.js',
+        'bower_components/jquery.validation/jquery.validate.js',
+        'bower_components/jquery-ui/ui/jquery-ui.js',
+        'bower_components/jquery.form/jquery.form.js',
+        'bower_components/jsrender/jsrender.js'
     ],
 
     sources: [
-        'client/js/travi.js',
-        'client/js/travi/templates.js',
-        'client/js/travi/location.js',
-        'client/js/travi/events.js',
-        'client/js/travi/pagination.js',
-        'client/js/**/*.js'
+        'js/travi.js',
+        'js/travi/templates.js',
+        'js/travi/location.js',
+        'js/travi/events.js',
+        'js/travi/pagination.js',
+        'js/**/*.js'
     ],
 
     resources: [
-        'client/templates/**/*.tmpl',
+        'templates/**/*.tmpl',
         'test/js/templates/**/*.tmpl'
     ],
 

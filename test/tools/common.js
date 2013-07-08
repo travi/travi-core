@@ -28,7 +28,7 @@ travi.test.common = {
         });
     },
 
-    assertObjectsHaveSameValues:function (expected, actual) {
+    assertObjectsHaveSameValues: function (expected, actual) {
         for (var key in expected) {
             if (expected.hasOwnProperty(key)) {
                 assertEquals(expected[key], actual[key]);
@@ -36,7 +36,7 @@ travi.test.common = {
         }
     },
 
-    assertAjaxCallMadeWith:function (expected, actual) {
+    assertAjaxCallMadeWith: function (expected, actual) {
         this.assertObjectsHaveSameValues(expected, actual);
     }
 };

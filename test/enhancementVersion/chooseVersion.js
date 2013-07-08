@@ -12,11 +12,6 @@ travi.test.testCase('Choose Enhancement Version', (function () {
         setUp: function () {
             $('body').append('<footer></footer>');
             sinon.stub(this.location, 'refresh');
-            sinon.stub(this.templates, 'get').returns({
-                then: function (callback) {
-                    callback();
-                }
-            });
             sinon.stub(Modernizr, 'mq');
             sinon.stub(this.cookies, 'create');
             sinon.stub(this.cookies, 'value');
@@ -24,7 +19,6 @@ travi.test.testCase('Choose Enhancement Version', (function () {
 
         tearDown: function () {
             travi.test.common.restore([
-                this.templates.get,
                 this.location.refresh,
                 this.cookies.create,
                 this.cookies.value,

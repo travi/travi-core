@@ -8,7 +8,7 @@ travi.framework.utils = (function () {
 
     if (typeof Object.create !== 'function') {
         Object.create = function (o) {
-            var F = function () {};
+            var F = function () { return this; };
             F.prototype = o;
             return new F();
         };

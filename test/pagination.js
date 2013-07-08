@@ -89,7 +89,7 @@ travi.test.testCase("PaginationTest", (function () {
         },
 
         'test prev link hidden when at beginning': function () {
-            amplify.publish(this.PAGE_LOADED, {
+            this.pageLoadedCallback({
                 offset: 0,
                 nextOffset: 5,
                 prevOffset: -5

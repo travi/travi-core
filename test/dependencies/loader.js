@@ -1,3 +1,4 @@
+/*jslint unparam: true */
 travi.test.testCase('DependencyLoaderTests', (function () {
     'use strict';
 
@@ -52,7 +53,7 @@ travi.test.testCase('DependencyLoaderTests', (function () {
             travi[this.simpleNamespace] = {};
 
             refute.called($.getScript);
-            assertTrue(promise.isResolved());
+            assertEquals('resolved', promise.state());
         },
 
         'test promise returned to allow for async loading': function () {
@@ -61,7 +62,7 @@ travi.test.testCase('DependencyLoaderTests', (function () {
             assertObject(promise);
             assertFunction(promise.promise);
 
-            assertFalse(promise.isResolved());
+            assertEquals('pending', promise.state());
         },
 
         'test promise is resolved once the module has loaded from the server': function () {
@@ -69,7 +70,7 @@ travi.test.testCase('DependencyLoaderTests', (function () {
 
             this.moduleLoadedCallback();
 
-            assertTrue(promise.isResolved());
+            assertEquals('resolved', promise.state());
         },
 
         'test original promise returned for module that has already been loaded/requested': function () {

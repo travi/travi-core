@@ -60,7 +60,7 @@
 
     function renderTemplate(templateName, data, callback) {
         if (callback) {
-            getTemplate(templateName).then(function () {
+            getTemplate(templateName).done(function () {
                 callback(render(data, templateName));
             });
         } else {
