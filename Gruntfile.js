@@ -64,7 +64,7 @@ module.exports = function (grunt) {
                 },
                 options: {
                     errorsOnly: true,
-                    checkstyle: 'logs/jslint-dist.xml'
+                    checkstyle: 'logs/jslint-test.xml'
                 }
             }
         },
