@@ -27,7 +27,7 @@ module.exports = function (grunt) {
                 },
                 options: {
                     errorsOnly: true,
-                    checkstyle: 'logs/jslint.xml'
+                    checkstyle: 'logs/jslint-dist.xml'
                 }
             },
             test: {
@@ -64,7 +64,7 @@ module.exports = function (grunt) {
                 },
                 options: {
                     errorsOnly: true,
-                    checkstyle: 'logs/jslint.xml'
+                    checkstyle: 'logs/jslint-dist.xml'
                 }
             }
         },
