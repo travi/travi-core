@@ -1,4 +1,3 @@
-/*jslint unparam: true */
 travi.test.testCase('DependencyLoaderTests', (function () {
     'use strict';
 

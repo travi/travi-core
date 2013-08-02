@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-jslint": "~0.2.5",
+    "grunt-jslint": "~1.0.0",
     "grunt-buster": "0.2.x",
     "buster-jstestdriver": "0.2.3",
     "grunt-jstestdriver": "~2.2.0"

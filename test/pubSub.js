@@ -11,7 +11,7 @@ travi.test.testCase('PubSubTests', (function (global) {
         },
         data: {},
 
-        setUp: function() {
+        setUp: function () {
             sinon.stub(global.amplify, 'publish');
             sinon.stub(global.amplify, 'subscribe');
             sinon.stub(global.amplify, 'unsubscribe');
