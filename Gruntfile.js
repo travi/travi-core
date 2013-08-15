@@ -5,6 +5,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-jslint');
     grunt.loadNpmTasks('grunt-buster');
     grunt.loadNpmTasks('grunt-jstestdriver');
+    grunt.loadNpmTasks('grunt-karma');
 
     // Project configuration.
     grunt.initConfig({
@@ -22,7 +23,7 @@ module.exports = function (grunt) {
                         'jQuery',
                         'Modernizr',
                         'amplify',
-                        'travi',
+                        'travi'
                     ]
                 },
                 options: {
@@ -81,10 +82,40 @@ module.exports = function (grunt) {
             files: [
                 'jsTestDriver.conf'
             ]
+        },
+
+        karma: {
+            unit: {
+                options: {
+                    files: [
+                        {pattern: 'templates/**/*.tmpl', included: false},
+                        {pattern: 'test/templates/**/*.tmpl', included: false},
+
+                        'node_modules/karma-jstd-adapter/jstd-adapter.js',
+                        'bower_components/jquery/jquery.js',
+                        'bower_components/jquery-ui/ui/jquery-ui.js',
+                        'bower_components/jsrender/jsrender.js',
+                        'test/stubs/*.js',
+
+                        'js/travi.js',
+                        'test/tools/sinon.js',
+                        'test/tools/*.js',
+                        'js/travi/templates.js',
+                        'js/travi/location.js',
+                        'js/travi/events.js',
+                        'js/travi/pagination.js',
+                        'test/resources/bootstrap.js',
+                        'js/**/*.js',
+                        'test/**/*.js'
+                    ]
+                },
+                browsers: ['PhantomJS'],
+                singleRun: true
+            }
         }
     });
 
+    grunt.registerTask('gates', ['jslint', 'karma']);
     // Default task.
-    grunt.registerTask('default', 'jslint');
-    grunt.registerTask('gates', ['jslint', 'jstestdriver']);
+    grunt.registerTask('default', 'gates');
 };

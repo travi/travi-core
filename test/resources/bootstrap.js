@@ -10,7 +10,7 @@ var contextPath;
 if (window.buster) {
     contextPath = buster.env.contextPath + '/include';
 } else if (jstestdriver) {
-    contextPath = '/test';
+    contextPath = '/base';
 }
 
 $.fx.off = true;
@@ -23,7 +23,8 @@ travi.templates.preLoad('update-item', contextPath + '/test/templates/stub-updat
 travi.templates.preLoad('entityList', contextPath + '/test/templates/entity-list.tmpl');
 travi.templates.preLoad('pagination', contextPath + '/test/templates/pagination.tmpl');
 
-//$.ajax = function () {
-//    fail('ajax not stubbed properly');
-//};
+$.ajax = function () {
+    fail('ajax not stubbed properly');
+};
 
+travi.location.refresh = function () { };
