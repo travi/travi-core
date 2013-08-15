@@ -110,7 +110,11 @@ module.exports = function (grunt) {
                     ]
                 },
                 browsers: ['PhantomJS'],
-                singleRun: true
+                singleRun: true,
+                reporters: ['junit'],
+                junitReporter: {
+                    outputFile: 'logs/karma.xml'
+                }
             }
         }
     });

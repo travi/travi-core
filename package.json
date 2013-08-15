@@ -17,6 +17,7 @@
     "karma-phantomjs-launcher": "~0.1.0",
     "karma": "~0.10.1",
     "grunt-karma": "~0.6.1",
-    "karma-jstd-adapter": "0.0.1"
+    "karma-jstd-adapter": "0.0.1",
+    "karma-junit-reporter": "~0.1.0"
   }
 }
