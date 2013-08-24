@@ -106,12 +106,16 @@ module.exports = function (grunt) {
                         'js/travi/pagination.js',
                         'test/resources/bootstrap.js',
                         'js/**/*.js',
+                        'test/stubs/ajaxStub.js',
                         'test/**/*.js'
                     ]
                 },
                 browsers: ['PhantomJS'],
                 singleRun: true,
-                reporters: ['junit'],
+                reporters: [
+                    'progress',
+                    'junit'
+                ],
                 junitReporter: {
                     outputFile: 'logs/karma.xml'
                 }
