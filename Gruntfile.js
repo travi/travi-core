@@ -95,17 +95,21 @@ module.exports = function (grunt) {
                         'bower_components/jquery/jquery.js',
                         'bower_components/jquery-ui/ui/jquery-ui.js',
                         'bower_components/jsrender/jsrender.js',
-                        'test/stubs/*.js',
+                        'test/stubs/amplifyStub.js',
+                        'test/stubs/modernizrStub.js',
+                        'test/stubs/momentStub.js',
 
                         'js/travi.js',
                         'test/tools/sinon.js',
                         'test/tools/*.js',
                         'js/travi/templates.js',
+                        'test/resources/load-templates.js',
                         'js/travi/location.js',
                         'js/travi/events.js',
                         'js/travi/pagination.js',
                         'test/resources/bootstrap.js',
                         'js/**/*.js',
+
                         'test/stubs/ajaxStub.js',
                         'test/**/*.js'
                     ]

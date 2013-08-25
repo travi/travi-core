@@ -1,5 +1,8 @@
 {
-    "searchpath": [
-        "http://packages.travi.org"
-    ]
+    "registry": {
+        "search": [
+            "http://bower.herokuapp.com",
+            "http://packages.travi.org"
+        ]
+    }
 }

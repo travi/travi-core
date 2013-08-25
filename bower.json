@@ -10,6 +10,7 @@
         "jsrender": "latest"
     },
     "devDependencies": {
+        "travi-test-utils": "latest",
         "sinon": "1.7.x"
     }
 }
