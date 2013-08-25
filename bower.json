@@ -2,7 +2,7 @@
     "name": "travi-core",
     "version": "0.5.0",
     "dependencies": {
-        "amplify": "1.1.x",
+        "amplify": "1.1.0",
         "jquery": "1.8.x",
         "jquery-ui": "1.9.x",
         "jquery-form": "3.37.x",
