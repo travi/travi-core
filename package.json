@@ -4,9 +4,6 @@
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-jslint": "~1.0.0",
-    "grunt-buster": "0.2.x",
-    "buster-jstestdriver": "0.2.3",
-    "grunt-jstestdriver": "~2.2.0",
     "karma-script-launcher": "~0.1.0",
     "karma-firefox-launcher": "~0.1.0",
     "karma-chrome-launcher": "~0.1.0",
