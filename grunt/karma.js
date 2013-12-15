@@ -4,7 +4,7 @@ module.exports = {
         singleRun: true,
 
         preprocessors: {
-            "js/**/*.js": "coverage"
+            "js/**/*.js": 'coverage'
         },
 
         reporters: [
@@ -18,8 +18,12 @@ module.exports = {
         },
 
         coverageReporter: {
-            type: "lcov",
+            type: 'lcov',
             dir: 'logs/coverage/'
-        }
+        },
+
+        plugins: [
+            'karma-coverage'
+        ]
     }
 };

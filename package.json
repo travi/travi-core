@@ -25,6 +25,6 @@
         "karma-coverage": "~0.1.4"
     },
     "scripts": {
-        "test": "grunt"
+        "test": "grunt travis"
     }
 }

@@ -1,3 +1,5 @@
 module.exports = {
-    coverage_dir: 'logs/coverage'
+    options: {
+        coverage_dir: 'logs/coverage'
+    }
 };
