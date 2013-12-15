@@ -3,8 +3,6 @@ module.exports = function (grunt) {
     'use strict';
 
     grunt.loadNpmTasks('grunt-jslint');
-    grunt.loadNpmTasks('grunt-buster');
-    grunt.loadNpmTasks('grunt-jstestdriver');
     grunt.loadNpmTasks('grunt-karma');
 
     // Project configuration.
