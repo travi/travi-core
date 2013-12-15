@@ -1,20 +1,23 @@
 {
-  "name": "travi-core",
-  "version": "0.1.0",
-  "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-jslint": "~1.0.0",
-    "karma-script-launcher": "~0.1.0",
-    "karma-firefox-launcher": "~0.1.0",
-    "karma-chrome-launcher": "~0.1.0",
-    "karma-html2js-preprocessor": "~0.1.0",
-    "karma-jasmine": "~0.1.0",
-    "karma-requirejs": "~0.1.0",
-    "karma-coffee-preprocessor": "~0.1.0",
-    "karma-phantomjs-launcher": "~0.1.0",
-    "karma": "~0.10.1",
-    "grunt-karma": "~0.6.1",
-    "karma-jstd-adapter": "0.0.1",
-    "karma-junit-reporter": "~0.1.0"
-  }
+    "name": "travi-core",
+    "version": "0.1.0",
+    "devDependencies": {
+        "grunt": "~0.4.1",
+        "grunt-jslint": "~1.0.0",
+        "karma-script-launcher": "~0.1.0",
+        "karma-firefox-launcher": "~0.1.0",
+        "karma-chrome-launcher": "~0.1.0",
+        "karma-html2js-preprocessor": "~0.1.0",
+        "karma-jasmine": "~0.1.0",
+        "karma-requirejs": "~0.1.0",
+        "karma-coffee-preprocessor": "~0.1.0",
+        "karma-phantomjs-launcher": "~0.1.0",
+        "karma": "~0.10.1",
+        "grunt-karma": "~0.6.1",
+        "karma-jstd-adapter": "0.0.1",
+        "karma-junit-reporter": "~0.1.0"
+    },
+    "scripts": {
+        "test": "grunt"
+    }
 }
