@@ -8,6 +8,7 @@ module.exports = function (config) {
             'bower_components/jquery/jquery.js',
             'bower_components/jquery-ui/ui/jquery-ui.js',
             'bower_components/jsrender/jsrender.js',
+            'bower_components/jquery-form/jquery.form.js',
             'bower_components/travi-test-utils/stubs/amplifyStub.js',
             'bower_components/travi-test-utils/stubs/modernizrStub.js',
             'bower_components/travi-test-utils/stubs/momentStub.js',
@@ -24,7 +25,9 @@ module.exports = function (config) {
             'js/**/*.js',
 
             'bower_components/travi-test-utils/stubs/ajaxStub.js',
-            'test/**/*.js'
+
+            'test/**/*.js',
+            'test/**/*.jstd'
         ],
 
         browsers: ['PhantomJS']

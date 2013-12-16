@@ -97,18 +97,18 @@ travi.test.testCase('EntityListTests', (function () {
 
         'test confirming remove makes ajax POST and removes entity on success': function () {
             sinon.stub(jQuery, 'ajax', function (options) {
-                options.success.call(null, {});
+                options.success({});
             });
             assertEquals(1, $('.entityList>li').length);
             $('a.item-action').click();
             $('.ui-dialog-buttonpane button').eq(0).click();
 
             assert.calledOnce(jQuery.ajax);
-            this.common.assertAjaxCallMadeWith({
-                url: '/admin/updates/45',
+            sinon.assert.calledWith($.ajax, sinon.match({
                 type: 'post',
                 dataType: 'json'
-            }, jQuery.ajax.getCall(0).args[0]);
+            }));
+            assert($.ajax.getCall(0).args[0].url.indexOf('/admin/updates/45') !== -1);
 
             assertEquals(0, $('.entityList>li').length);
         },
