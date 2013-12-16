@@ -1,5 +1,7 @@
 module.exports = function (config) {
     config.set({
+        frameworks: ['sinon'],
+
         files: [
             {pattern: 'templates/**/*.tmpl', included: false},
             {pattern: 'test/templates/**/*.tmpl', included: false},
@@ -14,8 +16,8 @@ module.exports = function (config) {
             'bower_components/travi-test-utils/stubs/momentStub.js',
 
             'js/travi.js',
-            'bower_components/travi-test-utils/tools/sinon.js',
-            'bower_components/travi-test-utils/tools/*.js',
+            'bower_components/travi-test-utils/tools/referee-jstestdriver.js',
+            'bower_components/travi-test-utils/tools/common.js',
             'js/travi/templates.js',
             'test/resources/load-templates.js',
             'js/travi/location.js',
