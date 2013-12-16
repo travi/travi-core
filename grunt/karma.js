@@ -4,7 +4,7 @@ module.exports = {
         singleRun: true,
 
         preprocessors: {
-            "js/**/*.js": 'coverage'
+            "js/**/!(utilities).js": 'coverage'
         },
 
         reporters: [
