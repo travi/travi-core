@@ -24,32 +24,37 @@
         return buttonText;
     }
 
-    function confirm(event) {
-        var $form = $(event.target);
+    function showLoadingIndicator(data, $form) {
+        $form.closest('li').append(
+            '<img src="/resources/shared/img/progress/ajax-spinner.gif" class="loading-indicator"/>'
+        );
+    }
 
-        $("#confirmation").dialog("option", "buttons", [
+    function removeEntity(data, testStatus, xhr, $form) {
+        var $containingList = $form.closest('ol');
+
+        $form
+            .closest('li')
+            .parent()
+            .closest('li')
+            .slideUp('slow', function () {
+                $(this).remove();
+                $containingList.trigger('entityRemoved');
+            });
+    }
+
+    function confirm(event) {
+        var $form = $(event.target),
+            $confirmation = $("#confirmation");
+
+        $confirmation.dialog("option", "buttons", [
             {
                 text:   getText(),
                 click:  function () {
                     $(this).dialog("close");
                     $form.ajaxSubmit({
-                        beforeSubmit: function (data, $form) {
-                            $form
-                                .closest('li')
-                                .append('<img src="/resources/shared/img/progress/ajax-spinner.gif" class="loading-indicator"/>');
-                        },
-                        success: function (data, testStatus, xhr, $form) {
-                            var $containingList = $form.closest('ol');
-
-                            $form
-                                .closest('li')
-                                .parent()
-                                .closest('li')
-                                .slideUp('slow', function () {
-                                    $(this).remove();
-                                    $containingList.trigger('entityRemoved');
-                                });
-                        },
+                        beforeSubmit: showLoadingIndicator,
+                        success: removeEntity,
                         dataType: 'json'
                     });
                 }
@@ -61,7 +66,7 @@
                 }
             }
         ]);
-        $("#confirmation").dialog("open");
+        $confirmation.dialog("open");
 
         return false;
     }
