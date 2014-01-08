@@ -1,8 +1,17 @@
 (function () {
     "use strict";
 
+    var checker = travi.dependencies.checker;
+
     travi.test.testCase("NamespaceTest", {
+        setUp: function () {
+            sinon.stub(checker, 'check');
+        },
+
         tearDown: function () {
+            travi.test.common.restore([
+                checker.check
+            ]);
             delete travi.nstest;
         },
 
@@ -16,7 +25,7 @@
             travi.nstest = {nested: {}};
             var result = travi.namespace("nstest.nested");
 
-            assertSame(result, travi.nstest.nested);
+            assertSame(travi.nstest.nested, result);
         },
 
         "test only create missing parts": function () {
@@ -47,6 +56,20 @@
             assertSame(provided, travi.nstest.nested.ui.provided);
             assertNotSame(provided, travi.nstest.nested.ui);
             assertEquals({provided: provided}, travi.nstest.nested.ui);
+        },
+
+        'test that register namespaces provided object': function () {
+            var provided = {};
+
+            travi.register('nstest', provided);
+
+            assertSame(provided, travi.nstest);
+        },
+
+        'test that checker gets called when namespacing via register': function () {
+            travi.register('nstest', {});
+
+            sinon.assert.calledOnce(checker.check);
         }
     });
 }());

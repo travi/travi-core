@@ -1,0 +1,71 @@
+travi.test.testCase('Dependency Checker Tests', (function () {
+    'use strict';
+
+    var checker = travi.dependencies.checker,
+
+        module1 = travi.test.any.string(),
+        module2 = travi.test.any.string();
+
+    function assertPromiseIsNotFullDeferred(promise) {
+        assertUndefined(promise.resolve);
+    }
+
+    function loadModule(ns) {
+        travi.namespace(ns);
+        checker.check('travi.' + ns);
+    }
+
+    function assertNotResolved(promise) {
+        assertEquals('pending', promise.state());
+    }
+
+    function assertResolved(promise) {
+        assertEquals('resolved', promise.state());
+    }
+
+    return {
+        setUp: function () {
+            checker.init();
+            travi.namespace(module1, {
+                init: sinon.spy()
+            });
+        },
+
+        tearDown: function () {
+            delete travi[module1];
+            delete travi[module2];
+        },
+
+        'test that loading a yet-to-be-loaded module returns a promise that is not resolved': function () {
+            var promise = checker.check('travi.' + travi.test.any.string());
+
+            assertPromiseIsNotFullDeferred(promise);
+            assertNotResolved(promise);
+        },
+
+        'test that loading an already-loaded module returns a resolved promise': function () {
+            assertResolved(checker.check('travi.events'));
+        },
+
+        'test that init is called if loaded': function () {
+            checker.check('travi.' + module1);
+
+            sinon.assert.calledOnce(travi[module1].init);
+        },
+
+        'test that init not called until dependencies are loaded': function () {
+            var promise = checker.check('travi.' + module1, {foo: 'travi.' + module2});
+
+            assertNotResolved(promise);
+            sinon.assert.notCalled(travi[module1].init);
+
+            loadModule(module2);
+
+            assertResolved(promise);
+
+            sinon.assert.calledWith(travi[module1].init, {
+                foo: travi[module2]
+            });
+        }
+    };
+}()));
