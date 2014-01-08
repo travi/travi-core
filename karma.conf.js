@@ -27,7 +27,6 @@ module.exports = function (config) {
 
             'bower_components/travi-test-utils/stubs/ajaxStub.js',
 
-            'test/**/*.js',
             'test/**/*.jstd'
         ],
 
