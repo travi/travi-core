@@ -20,8 +20,7 @@
     "load-grunt-config": "~0.7.0",
     "grunt-karma-coveralls": "~2.2.0",
     "karma-coverage": "~0.1.4",
-    "karma-referee": "~0.2.0",
-    "karma-sinon": "~1.0.0"
+    "karma-referee": "~0.2.0"
   },
   "scripts": {
     "test": "grunt travis"

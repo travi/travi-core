@@ -33,8 +33,8 @@ travi.test.testCase('DependencyLoaderTests', (function () {
         'test module requested from server if not already loaded': function () {
             this.loader.load(this.script);
 
-            assert.calledOnce($.getScript);
-            assert.calledWith($.getScript, this.pathToScript);
+            sinon.assert.calledOnce($.getScript);
+            sinon.assert.calledWith($.getScript, this.pathToScript);
         },
 
         'test module not requested from server if already loaded': function () {

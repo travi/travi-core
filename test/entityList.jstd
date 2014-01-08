@@ -103,7 +103,7 @@ travi.test.testCase('EntityListTests', (function () {
             $('a.item-action').click();
             $('.ui-dialog-buttonpane button').eq(0).click();
 
-            assert.calledOnce(jQuery.ajax);
+            sinon.assert.calledOnce(jQuery.ajax);
             sinon.assert.calledWith($.ajax, sinon.match({
                 type: 'post',
                 dataType: 'json'

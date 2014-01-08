@@ -68,7 +68,7 @@ travi.test.testCase("TemplateTests", (function () {
             templates[anotherTemplateName] = pathToAnotherTemplate;
             this.templates.preLoad(templates);
 
-            assert.equals(Object.keys(templates).length, $.ajax.callCount);
+            assertEquals(Object.keys(templates).length, $.ajax.callCount);
             assertEquals(this.pathToTemplate, $.ajax.getCall(0).args[0].url);
             assertEquals(pathToAnotherTemplate, $.ajax.getCall(1).args[0].url);
         },
@@ -116,11 +116,11 @@ travi.test.testCase("TemplateTests", (function () {
 
             this.templates.render(this.templateName, dataForTemplate, callback);
 
-            assert.calledOnce($.render[this.templateName]);
-            assert.calledWith($.render[this.templateName], dataForTemplate);
+            sinon.assert.calledOnce($.render[this.templateName]);
+            sinon.assert.calledWith($.render[this.templateName], dataForTemplate);
 
-            assert.calledOnce(callback);
-            assert.calledWith(callback, renderedTemplate);
+            sinon.assert.calledOnce(callback);
+            sinon.assert.calledWith(callback, renderedTemplate);
         },
 
         'test callback not called when template not loaded': function () {
@@ -146,14 +146,14 @@ travi.test.testCase("TemplateTests", (function () {
             travi.templates.get(this.templateName);
             travi.templates.get(this.templateName);
 
-            assert.calledOnce(jQuery.ajax);
+            sinon.assert.calledOnce(jQuery.ajax);
         },
 
         "test that caching does not prevent other templates from loading from server": function () {
             travi.templates.get(this.templateName);
             travi.templates.get('someOtherTemplateName');
 
-            assert.calledTwice(jQuery.ajax);
+            sinon.assert.calledTwice(jQuery.ajax);
         },
 
         'test template can be rendered without data': function () {

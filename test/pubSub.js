@@ -28,22 +28,22 @@ travi.test.testCase('PubSubTests', (function (global) {
         'test publish mapped to amplify': function () {
             this.events.publish(this.eventName, this.data);
 
-            assert.calledOnce(amplify.publish);
-            assert.calledWith(amplify.publish, this.eventName, this.data);
+            sinon.assert.calledOnce(amplify.publish);
+            sinon.assert.calledWith(amplify.publish, this.eventName, this.data);
         },
 
         'test subscribe mapped to amplify': function () {
             this.events.subscribe(this.eventName, this.callback);
 
-            assert.calledOnce(amplify.subscribe);
-            assert.calledWith(amplify.subscribe, this.eventName, this.callback);
+            sinon.assert.calledOnce(amplify.subscribe);
+            sinon.assert.calledWith(amplify.subscribe, this.eventName, this.callback);
         },
 
         'test unsubscribe mapped to amplify': function () {
             this.events.unsubscribe(this.eventName, this.callback);
 
-            assert.calledOnce(amplify.unsubscribe);
-            assert.calledWith(amplify.unsubscribe, this.eventName, this.callback);
+            sinon.assert.calledOnce(amplify.unsubscribe);
+            sinon.assert.calledWith(amplify.unsubscribe, this.eventName, this.callback);
         }
     };
 }(this)));

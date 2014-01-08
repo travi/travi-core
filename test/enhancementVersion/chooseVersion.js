@@ -94,14 +94,14 @@ travi.test.testCase('Choose Enhancement Version', (function () {
 
             $('#' + constants.LARGE_SCREEN_CHOICE + 'Version').click();
 
-            assert.calledOnce(this.cookies.create);
-            assert.calledWith(
+            sinon.assert.calledOnce(this.cookies.create);
+            sinon.assert.calledWith(
                 this.cookies.create,
                 constants.ENHANCEMENT_VERSION_KEY,
                 constants.LARGE_COOKIE_VALUE,
                 constants.DAYS_BEFORE_ENHANCEMENT_COOKIE_EXPIRATION
             );
-            assert.calledOnce(this.location.refresh);
+            sinon.assert.calledOnce(this.location.refresh);
 
         },
 
@@ -115,14 +115,14 @@ travi.test.testCase('Choose Enhancement Version', (function () {
 
             $('#' + constants.SMALL_SCREEN_CHOICE + 'Version').click();
 
-            assert.calledOnce(this.cookies.create);
-            assert.calledWith(
+            sinon.assert.calledOnce(this.cookies.create);
+            sinon.assert.calledWith(
                 this.cookies.create,
                 constants.ENHANCEMENT_VERSION_KEY,
                 constants.SMALL_COOKIE_VALUE,
                 constants.DAYS_BEFORE_ENHANCEMENT_COOKIE_EXPIRATION
             );
-            assert.calledOnce(this.location.refresh);
+            sinon.assert.calledOnce(this.location.refresh);
         }
     };
 }()));
