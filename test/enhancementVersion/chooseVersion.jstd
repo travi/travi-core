@@ -62,26 +62,30 @@ travi.test.testCase('Choose Enhancement Version', (function () {
             assertEquals(choiceGroupId, $('#' + choicesExplainationId).parent().attr('id'));
         },
 
-        'test Mobile link shown when desktop version active': function () {
+        'test small-screen link shown when large-screen version active': function () {
             this.cookies.value.returns(this.enhancements.constants().LARGE_COOKIE_VALUE);
 
             this.enhancements.init();
 
             var $enhancementChoices = $('#' + this.choiceListId + ' li');
 
-            assertEquals('small screen', $enhancementChoices.eq(1).text().trim());
-            assertEquals(this.enhancements.constants().SMALL_SCREEN_CHOICE + 'Version', $enhancementChoices.eq(1).attr('id'));
+            var $link = $enhancementChoices.eq(1);
+            assertEquals('small screen', $link.text().trim());
+            assertEquals(this.enhancements.constants().SMALL_SCREEN_CHOICE + 'Version', $link.attr('id'));
+            assertTrue($link.hasClass('icon-mobile'));
         },
 
-        'test desktop link shown when mobile version active': function () {
+        'test large-screen link shown when small-screen version active': function () {
             this.cookies.value.returns(this.enhancements.constants().SMALL_COOKIE_VALUE);
 
             this.enhancements.init();
 
             var $enhancementChoices = $('#' + this.choiceListId + ' li');
 
-            assertEquals('large screen', $enhancementChoices.eq(1).text().trim());
-            assertEquals(this.enhancements.constants().LARGE_SCREEN_CHOICE + 'Version', $enhancementChoices.eq(1).attr('id'));
+            var $link = $enhancementChoices.eq(1);
+            assertEquals('large screen', $link.text().trim());
+            assertEquals(this.enhancements.constants().LARGE_SCREEN_CHOICE + 'Version', $link.attr('id'));
+            assertTrue($link.hasClass('icon-desktop'));
         },
 
         'test Switch to Desktop version': function () {
@@ -102,7 +106,6 @@ travi.test.testCase('Choose Enhancement Version', (function () {
                 constants.DAYS_BEFORE_ENHANCEMENT_COOKIE_EXPIRATION
             );
             sinon.assert.calledOnce(this.location.refresh);
-
         },
 
         'test Switch to Mobile version': function () {

@@ -46,19 +46,24 @@ travi.templates.preLoad('chooseEnhancement', '/resources/thirdparty/travi-core/t
     function addLinksToChooseVersion() {
         var currentEnhancement = cookies.value(ENHANCEMENT_VERSION_KEY),
             alternateEnhancement,
-            alternateEnhancementText;
+            alternateEnhancementText,
+            alternateCommonName;
 
         if (currentEnhancement === SMALL_COOKIE_VALUE) {
             alternateEnhancement = LARGE_SCREEN_CHOICE;
             alternateEnhancementText = 'large screen';
+            alternateCommonName = 'desktop';
+
         } else if (currentEnhancement === LARGE_COOKIE_VALUE) {
             alternateEnhancement = SMALL_SCREEN_CHOICE;
             alternateEnhancementText = 'small screen';
+            alternateCommonName = 'mobile';
         }
 
         templates.render('chooseEnhancement', {
             alternateEnhancement: alternateEnhancement,
-            alternateEnhancementText: alternateEnhancementText
+            alternateEnhancementText: alternateEnhancementText,
+            alternateCommonName: alternateCommonName
         }, function (renderedTemplate) {
             $('footer').append(renderedTemplate);
 
