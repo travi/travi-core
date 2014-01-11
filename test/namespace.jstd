@@ -67,9 +67,14 @@
         },
 
         'test that checker gets called when namespacing via register': function () {
-            travi.register('nstest', {});
+            var namespace = 'nstest',
+                dependencies = {
+                    foo: 'bar'
+                };
 
-            sinon.assert.calledOnce(checker.check);
+            travi.register(namespace, {}, dependencies);
+
+            sinon.assert.calledWith(checker.check, 'travi.' + namespace, dependencies);
         }
     });
 }());
