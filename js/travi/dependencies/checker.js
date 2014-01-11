@@ -32,17 +32,35 @@
         getDeferred(namespace).resolve();
     }
 
+    function determineLoadedState(dependency) {
+        var deferred = new $.Deferred();
+
+        if (getModule(dependency)) {
+            deferred.resolve();
+        }
+
+        travi.putInObject(moduleStatuses, dependency, deferred);
+
+        return deferred;
+    }
+
+    function getLoadedStateFor(dependency) {
+        var deferred = getDeferred(dependency);
+
+        if (!deferred) {
+            deferred = determineLoadedState(dependency);
+        }
+
+        return deferred.promise();
+    }
+
     function getPromiseListForDependencies(dependencies) {
         var promises = [],
-            deferred,
-            dependency;
+            key;
 
-        for (dependency in dependencies) {
-            if (dependencies.hasOwnProperty(dependency)) {
-                deferred = new $.Deferred();
-
-                travi.putInObject(moduleStatuses, dependencies[dependency], deferred);
-                promises.push(deferred.promise());
+        for (key in dependencies) {
+            if (dependencies.hasOwnProperty(key)) {
+                promises.push(getLoadedStateFor(dependencies[key]));
             }
         }
 

@@ -66,6 +66,30 @@ travi.test.testCase('Dependency Checker Tests', (function () {
             sinon.assert.calledWith(travi[module1].init, {
                 foo: travi[module2]
             });
+        },
+
+        'test that init called if dependencies are already loaded': function () {
+            loadModule(module2);
+
+            var promise = checker.check('travi.' + module1, {foo: 'travi.' + module2});
+
+            assertResolved(promise);
+
+            sinon.assert.calledWith(travi[module1].init, {
+                foo: travi[module2]
+            });
+        },
+
+        'test that init called if dependencies are already namespaced, but not yet loaded': function () {
+            travi.namespace(module2);
+
+            var promise = checker.check('travi.' + module1, {foo: 'travi.' + module2});
+
+            assertResolved(promise);
+
+            sinon.assert.calledWith(travi[module1].init, {
+                foo: travi[module2]
+            });
         }
     };
 }()));
