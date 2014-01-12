@@ -74,7 +74,7 @@
     function restyleRemove() {
         $("li.remove-item form:visible")
             .hide()
-            .after("<a class='item-action' href='#'>Remove</a>");
+            .after("<a class='item-action icon-remove' href='#'>Remove</a>");
     }
 
     function requestAnnouncements(eventData) {

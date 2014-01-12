@@ -86,7 +86,7 @@ travi.test.testCase('EntityListTests', (function () {
         'test form gets converted to link': function () {
             assertEquals(1, this.$form.length);
             assert(this.$form.is(':not(:visible)'));
-            assert($("li.remove-item a.item-action").is(':visible'));
+            assert($("li.remove-item a.item-action.icon-remove").is(':visible'));
         },
 
         'test clicking link triggers submit event on corresponding form': function () {
