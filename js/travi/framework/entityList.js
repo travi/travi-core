@@ -68,7 +68,7 @@
         ]);
         $confirmation.dialog("open");
 
-        return false;
+        event.preventDefault();
     }
 
     function restyleRemove() {
@@ -113,9 +113,9 @@
         $updateList = $('ol.entityList');
 
         restyleRemove();
-        $updateList.delegate('li.remove-item a.item-action', 'click', function () {
+        $updateList.delegate('li.remove-item a.item-action', 'click', function (event) {
+            event.preventDefault();
             $(this).prev("form").submit();
-            return false;
         }).delegate("form.item-action", 'submit', confirm);
         $("body").append("<div id='confirmation' title='Are you sure?'></div>");
         $("#confirmation").dialog({
