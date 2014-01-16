@@ -3,14 +3,13 @@
     "version": "0.5.0",
     "dependencies": {
         "amplify": "1.1.0",
-        "jquery": "1.8.x",
+        "jquery": "1.10.x",
         "jquery-ui": "1.9.x",
         "jquery-form": "3.37.x",
         "jquery.validation": "1.11.x",
         "jsrender": "latest"
     },
     "devDependencies": {
-        "travi-test-utils": "latest",
-        "sinon": "1.7.x"
+        "travi-test-utils": "latest"
     }
 }
