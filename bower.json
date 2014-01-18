@@ -1,6 +1,6 @@
 {
     "name": "travi-core",
-    "version": "0.6.0",
+    "version": "0.6.1",
     "dependencies": {
         "amplify": "1.1.0",
         "jquery": "1.10.x",
