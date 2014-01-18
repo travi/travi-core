@@ -26,7 +26,7 @@
 
     function showLoadingIndicator(data, $form) {
         $form.closest('li').append(
-            '<img src="/resources/shared/img/progress/ajax-spinner.gif" class="loading-indicator"/>'
+            '<img src="/resources/thirdparty/travi-styles/img/progress/ajax-spinner.gif" class="loading-indicator"/>'
         );
     }
 
