@@ -66,53 +66,5 @@ module.exports = {
             errorsOnly: true,
             checkstyle: 'logs/jslint-test.xml'
         }
-    },
-    ui: {
-        src: [
-            'js/**/*.js'
-        ],
-        directives: {
-            browser: true,
-            predef: [
-                '$',
-                'jQuery',
-                'Modernizr',
-                'travi'
-            ]
-        },
-        options: {
-            errorsOnly: true,
-            checkstyle: 'logs/jslint-ui.xml'
-        }
-    },
-    uiTest: {
-        src: [
-            'test/ui/**/*.jstd'
-        ],
-        directives: {
-            browser: true,
-            predef: [
-                '$',
-                'jQuery',
-                'travi',
-
-                'sinon',
-                'assertEquals',
-                'assertSame',
-                'assertNotSame',
-                'assertString',
-                'assertObject',
-                'assertFunction',
-                'assert',
-                'refute',
-                'assertFalse',
-                'assertTrue',
-                'expectAsserts'
-            ]
-        },
-        options: {
-            errorsOnly: true,
-            checkstyle: 'logs/jslint-ui-test.xml'
-        }
     }
 };
