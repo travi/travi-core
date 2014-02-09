@@ -1,5 +1,5 @@
 /*jslint unparam: true */
-(function (travi, framework) {
+(function (travi) {
     "use strict";
 
     var constants = travi.constants,
@@ -131,7 +131,7 @@
 
     $(init);
 
-    framework.namespace('entityList', {
+    travi.register('entityList', {
         init                    : init,
         setConfirmationMessage  : setMessage,
         setButtonText           : setText,
@@ -139,4 +139,4 @@
         constants               : constants,
         requestMoreAnnouncements: requestAnnouncements
     });
-}(travi, travi.framework));
+}(travi));
