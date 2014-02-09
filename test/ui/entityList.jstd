@@ -4,8 +4,8 @@ travi.test.testCase('EntityListTests', (function () {
     return {
         common: travi.test.common,
 
-        entityList: travi.entityList,
-        pagination: travi.pagination,
+        entityList: travi.ui.entityList,
+        pagination: travi.ui.pagination,
         templates: travi.templates,
         events: travi.events,
 

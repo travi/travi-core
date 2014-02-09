@@ -2,7 +2,7 @@ travi.test.testCase("PaginationTest", (function () {
     'use strict';
 
     return {
-        pagination: travi.pagination,
+        pagination: travi.ui.pagination,
         events: travi.events,
 
         PAGE_LOADED: 'page-loaded',

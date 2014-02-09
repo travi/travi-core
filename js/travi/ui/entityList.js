@@ -4,7 +4,7 @@
 
     var constants = travi.constants,
         templates = travi.templates,
-        pagination = travi.pagination,
+        pagination = travi.ui.pagination,
         events = travi.events,
 
         TEMPLATE_NAME = 'update-item',
@@ -131,7 +131,7 @@
 
     $(init);
 
-    travi.register('entityList', {
+    travi.register('ui.entityList', {
         init                    : init,
         setConfirmationMessage  : setMessage,
         setButtonText           : setText,

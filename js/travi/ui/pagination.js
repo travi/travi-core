@@ -72,7 +72,7 @@
 
     $(init);
 
-    travi.namespace('pagination', {
+    travi.namespace('ui.pagination', {
         init: init,
         events: events,
         constants: constants,
