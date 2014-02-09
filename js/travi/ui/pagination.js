@@ -70,9 +70,7 @@
         eventsModule.subscribe('page-loaded', updateLinks);
     }
 
-    $(init);
-
-    travi.namespace('ui.pagination', {
+    travi.register('ui.pagination', {
         init: init,
         events: events,
         constants: constants,
