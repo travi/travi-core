@@ -6,4 +6,9 @@ travis:
   - gates
   - coveralls
 
+ui:
+  - jslint:ui
+  - jslint:uiTest
+  - karma:ui
+
 default: gates

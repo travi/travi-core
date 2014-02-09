@@ -21,6 +21,7 @@ module.exports = function (config) {
             'test/resources/load-templates.js',
             'js/travi/location.js',
             'js/travi/events.js',
+            'js/travi/dependencies/*.js',
             'js/travi/ui/pagination.js',
             'bower_components/travi-test-utils/test-init.js',
             'js/**/*.js',
