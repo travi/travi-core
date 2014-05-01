@@ -4,11 +4,9 @@ module.exports = function (config) {
 
         files: [
             {pattern: 'templates/**/*.tmpl', included: false},
-            {pattern: 'test/templates/**/*.tmpl', included: false},
 
             'node_modules/karma-jstd-adapter/jstd-adapter.js',
             'bower_components/jquery/jquery.js',
-            'bower_components/jquery-ui/ui/jquery-ui.js',
             'bower_components/jsrender/jsrender.js',
             'bower_components/jquery-form/jquery.form.js',
             'bower_components/travi-test-utils/stubs/amplifyStub.js',
@@ -22,7 +20,6 @@ module.exports = function (config) {
             'js/travi/location.js',
             'js/travi/events.js',
             'js/travi/dependencies/*.js',
-            'js/travi/ui/pagination.js',
             'bower_components/travi-test-utils/test-init.js',
             'js/**/*.js',
 
