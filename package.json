@@ -17,7 +17,7 @@
     "grunt-karma": "~0.6.1",
     "karma-jstd-adapter": "0.0.1",
     "karma-junit-reporter": "~0.2.0",
-    "load-grunt-config": "~0.7.0",
+    "load-grunt-config": "~0.9.1",
     "grunt-karma-coveralls": "~2.2.0",
     "karma-coverage": "~0.1.4",
     "karma-referee": "~0.2.0",
