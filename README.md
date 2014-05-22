@@ -6,3 +6,5 @@ Travi Core JS Library
 [![Code Climate](https://codeclimate.com/github/travi/travi-core.png)](https://codeclimate.com/github/travi/travi-core)
 [![githalytics.com alpha](https://cruel-carlota.pagodabox.com/dbf0f99784c157897e7978f91ebe62fe "githalytics.com")](http://githalytics.com/travi/travi-core)
 [![Dependency Status](https://gemnasium.com/travi/travi-core.svg)](https://gemnasium.com/travi/travi-core)
+
+[![Bower version](https://badge.fury.io/bo/travi-core.svg)](http://badge.fury.io/bo/travi-core)
