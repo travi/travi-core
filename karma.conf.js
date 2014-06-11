@@ -6,7 +6,7 @@ module.exports = function (config) {
             {pattern: 'templates/**/*.tmpl', included: false},
 
             'node_modules/karma-jstd-adapter/jstd-adapter.js',
-            'bower_components/jquery/jquery.js',
+            'bower_components/jquery/dist/jquery.js',
             'bower_components/jsrender/jsrender.js',
             'bower_components/jquery-form/jquery.form.js',
             'bower_components/travi-test-utils/stubs/amplifyStub.js',
