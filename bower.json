@@ -1,14 +1,17 @@
 {
-    "name": "travi-core",
-    "version": "0.8.0",
-    "dependencies": {
-        "amplify": "1.1.0",
-        "jquery": "1.11.x",
-        "jquery-form": "3.37.x",
-        "jquery.validation": "1.11.x",
-        "jsrender": "latest"
-    },
-    "devDependencies": {
-        "travi-test-utils": "latest"
-    }
+  "name": "travi-core",
+  "version": "0.8.0",
+  "dependencies": {
+    "amplify": "1.1.0",
+    "jquery": "1.11.x",
+    "jquery-form": "3.37.x",
+    "jquery.validation": "1.11.x",
+    "jsrender": "latest"
+  },
+  "devDependencies": {
+    "travi-test-utils": "latest"
+  },
+  "resolutions": {
+    "jquery": "1.11.x"
+  }
 }
