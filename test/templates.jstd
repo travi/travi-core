@@ -1,8 +1,12 @@
 travi.test.testCase("TemplateTests", (function () {
     'use strict';
 
-    var xhrDeferred,
+    var pathToTemplate = '/path/to/template',
+        templateName = 'someName',
+
+        xhrDeferred,
         xhr,
+        alternateXhrDeferred,
         ajaxSuccess;
 
     function simulateSuccessfulAjaxResponse() {
@@ -15,23 +19,34 @@ travi.test.testCase("TemplateTests", (function () {
         simulateSuccessfulAjaxResponse.call(this);
     }
 
+    function createXhrToReturn(url) {
+        var xhrToReturn;
+
+        if (url === '/templates/' + templateName + '.tmpl' || url === pathToTemplate) {
+            xhrDeferred = new $.Deferred();
+            xhrToReturn = xhr = xhrDeferred.promise();
+        } else {
+            alternateXhrDeferred = new $.Deferred();
+            xhrToReturn = alternateXhrDeferred.promise();
+        }
+
+        return xhrToReturn;
+    }
+
     return {
         templates: travi.templates,
 
-        templateName: 'someName',
-        pathToTemplate: '/path/to/template',
+        templateName: templateName,
+        pathToTemplate: pathToTemplate,
         templateAsString: 'template',
 
         setUp: function () {
-            xhrDeferred = xhr = ajaxSuccess = null;
+            xhrDeferred = xhr = alternateXhrDeferred = ajaxSuccess = null;
 
             sinon.stub(jQuery, 'ajax', function (options) {
                 ajaxSuccess = options.success;
 
-                xhrDeferred = new $.Deferred();
-                xhr = xhrDeferred.promise();
-
-                return xhr;
+                return createXhrToReturn(options.url);
             });
 
             travi.templates.init();
@@ -68,31 +83,39 @@ travi.test.testCase("TemplateTests", (function () {
 
             simulateSuccessfulAjaxResponse.call(this);
 
-            this.assertTemplateWasCached(this.templateName, this.templateAsString);
+            assert.calledWith(jQuery.templates, this.templateName, this.templateAsString);
             assert.equals(xhr.state(), 'resolved');
         },
 
         'test preLoad can accept a list': function () {
             var anotherTemplateName = 'anotherTemplate',
                 pathToAnotherTemplate = '/path/to/another/template',
-                templates = {};
+                templates = {},
+                promise;
             templates[this.templateName] = this.pathToTemplate;
             templates[anotherTemplateName] = pathToAnotherTemplate;
 
-            this.templates.preLoad(templates);
+            promise = this.templates.preLoad(templates);
 
             assert.equals(Object.keys(templates).length, $.ajax.callCount);
-            assert.equals(this.pathToTemplate, $.ajax.getCall(0).args[0].url);
-            assert.equals(pathToAnotherTemplate, $.ajax.getCall(1).args[0].url);
+            assert.calledWith($.ajax, sinon.match({url: pathToTemplate}));
+            assert.calledWith($.ajax, sinon.match({url: pathToAnotherTemplate}));
+
+            assert.equals(promise.state(), 'pending');
+
+            xhrDeferred.resolve();
+
+            assert.equals(promise.state(), 'pending');
+
+            alternateXhrDeferred.resolve();
+
+            assert.equals(promise.state(), 'resolved');
         },
 
         "test that getting a template by name requests it from the server and returns the promise": function () {
             var promise = travi.templates.get(this.templateName);
 
-            assert.equals(
-                '/templates/' + this.templateName + '.tmpl',
-                jQuery.ajax.getCall(0).args[0].url
-            );
+            assert.calledWith(jQuery.ajax, sinon.match({url: '/templates/' + this.templateName + '.tmpl'}));
 
             assert.isObject(promise);
             assert.isFunction(promise.promise);
@@ -108,7 +131,7 @@ travi.test.testCase("TemplateTests", (function () {
 
             renderedTemplate = travi.templates.render(this.templateName, dataForTemplate);
 
-            this.assertTemplateRenderedWithData(dataForTemplate);
+            assert.calledWith(jQuery.render[this.templateName], dataForTemplate);
             assert.isString(renderedTemplate);
         },
 
@@ -166,17 +189,6 @@ travi.test.testCase("TemplateTests", (function () {
             refute.exception(function () {
                 testCase.templates.render(testCase.templateName);
             });
-        },
-
-        assertTemplateRenderedWithData: function (data) {
-            assert(jQuery.render[this.templateName].calledOnce);
-            assert.same(data, jQuery.render[this.templateName].getCall(0).args[0]);
-        },
-
-        assertTemplateWasCached: function (templateName, templateAsString) {
-            assert.calledOnce(jQuery.templates);
-            assert.equals(templateName, jQuery.templates.getCall(0).args[0]);
-            assert.equals(templateAsString, jQuery.templates.getCall(0).args[1]);
         }
     };
 }()));

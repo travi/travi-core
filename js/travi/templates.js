@@ -37,7 +37,8 @@
     }
 
     function preLoadTemplates(templates, pathToSingleTemplate) {
-        var templateName;
+        var templateName,
+            promises = [];
 
         if ('string' === typeof templates) {
             return getTemplate(templates, pathToSingleTemplate);
@@ -45,9 +46,11 @@
 
         for (templateName in templates) {
             if (templates.hasOwnProperty(templateName)) {
-                getTemplate(templateName, templates[templateName]);
+                promises.push(getTemplate(templateName, templates[templateName]));
             }
         }
+
+        return $.when.apply(null, promises);
     }
 
     function render(data, templateName) {
