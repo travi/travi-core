@@ -1,6 +1,15 @@
 travi.test.testCase("TemplateTests", (function () {
     'use strict';
 
+    var xhrDeferred,
+        xhr,
+        ajaxSuccess;
+
+    function simulateSuccessfulAjaxResponse() {
+        ajaxSuccess(this.templateAsString);
+        xhrDeferred.resolve();
+    }
+
     return {
         templates: travi.templates,
 
@@ -9,10 +18,13 @@ travi.test.testCase("TemplateTests", (function () {
         templateAsString: 'template',
 
         setUp: function () {
-            var testCase = this;
+            xhrDeferred = new $.Deferred();
+            xhr = xhrDeferred.promise();
 
             sinon.stub(jQuery, 'ajax', function (options) {
-                options.success(testCase.templateAsString);
+                ajaxSuccess = options.success;
+
+                return xhr;
             });
 
             travi.templates.init();
@@ -23,38 +35,33 @@ travi.test.testCase("TemplateTests", (function () {
                 jQuery.ajax,
                 jQuery.Deferred,
                 jQuery.templates,
-                jQuery.render[this.templateName],
                 this.templates.get,
                 this.templates.preLoad
             ]);
+            if (jQuery.render[this.templateName]) {
+                travi.test.common.restore(jQuery.render[this.templateName]);
+            }
         },
 
         'test pre-loading template requests it from the server, caches it, and returns the promise': function () {
-            var promise,
-                promiseToReturn = {},
-                constructedDeferred = {
-                    promise: function () {
-                        return promiseToReturn;
-                    },
-                    resolve: sinon.spy()
-                };
+            var promise = this.templates.preLoad(this.templateName, this.pathToTemplate);
 
-            sinon.stub(jQuery, 'Deferred').returns(constructedDeferred);
-
-            sinon.spy(jQuery, 'templates');
-
-            promise = this.templates.preLoad(this.templateName, this.pathToTemplate);
-
-            assert(jQuery.ajax.calledOnce);
-            travi.test.common.assertAjaxCallMadeWith({
+            assert.calledWith($.ajax, sinon.match({
                 type: 'get',
                 dataType: 'text',
                 url: this.pathToTemplate
-            }, jQuery.ajax.getCall(0).args[0]);
+            }));
+            assert.same(promise, xhr);
+        },
 
-            this.assertPromiseResolvedAfterCachingTemplate(constructedDeferred);
+        'test that template is cached after server responds': function () {
+            sinon.spy(jQuery, 'templates');
+            assert.equals(xhr.state(), 'pending');
+
+            simulateSuccessfulAjaxResponse.call(this);
+
             this.assertTemplateWasCached(this.templateName, this.templateAsString);
-            this.assertPromiseWasReturned(promiseToReturn, promise);
+            assert.equals(xhr.state(), 'resolved');
         },
 
         'test preLoad can accept a list': function () {
@@ -88,28 +95,24 @@ travi.test.testCase("TemplateTests", (function () {
                 dataForTemplate = {
                     data: 'something'
                 };
-
             sinon.stub(jQuery.render, this.templateName).returns('renderedTemplate');
 
             renderedTemplate = travi.templates.render(this.templateName, dataForTemplate);
 
             this.assertTemplateRenderedWithData(dataForTemplate);
-
             assert.isString(renderedTemplate);
         },
 
         'test callback called after template loaded from server': function () {
-            var constructedDeferred = new $.Deferred(),
-                dataForTemplate = {
+            var dataForTemplate = {
                     data: 'something'
                 },
                 callback = sinon.spy(),
                 renderedTemplate = 'renderedTemplate';
 
             this.templates.preLoad(this.templateName);
+            simulateSuccessfulAjaxResponse.call(this);
 
-            constructedDeferred.resolve();
-            sinon.stub(jQuery, 'Deferred').returns(constructedDeferred);
             sinon.stub(jQuery.render, this.templateName).returns(renderedTemplate);
 
             this.templates.render(this.templateName, dataForTemplate, callback);
@@ -122,19 +125,11 @@ travi.test.testCase("TemplateTests", (function () {
         },
 
         'test callback not called when template not loaded': function () {
-            var constructedDeferred = new $.Deferred(),
-                dataForTemplate = {
-                    data: 'something'
-                },
-                callback = sinon.spy();
+            var callback = sinon.spy();
 
-            travi.test.common.restore($.ajax);
-            sinon.stub($, 'ajax');
-
-            sinon.stub(jQuery, 'Deferred').returns(constructedDeferred);
             sinon.stub(jQuery.render, this.templateName);
 
-            travi.templates.render(this.templateName, dataForTemplate, callback);
+            travi.templates.render(this.templateName, {}, callback);
 
             refute.called($.render[this.templateName]);
             refute.called(callback);
@@ -142,9 +137,11 @@ travi.test.testCase("TemplateTests", (function () {
 
         "test that template is not requested from server if already cached": function () {
             travi.templates.get(this.templateName);
+            $.ajax.reset();
+
             travi.templates.get(this.templateName);
 
-            assert.calledOnce(jQuery.ajax);
+            refute.called(jQuery.ajax);
         },
 
         "test that caching does not prevent other templates from loading from server": function () {
@@ -167,19 +164,10 @@ travi.test.testCase("TemplateTests", (function () {
             assert.same(data, jQuery.render[this.templateName].getCall(0).args[0]);
         },
 
-        assertPromiseResolvedAfterCachingTemplate: function (deferred) {
-            assert(deferred.resolve.calledOnce);
-        },
-
         assertTemplateWasCached: function (templateName, templateAsString) {
-            assert(jQuery.templates.calledOnce);
+            assert.calledOnce(jQuery.templates);
             assert.equals(templateName, jQuery.templates.getCall(0).args[0]);
             assert.equals(templateAsString, jQuery.templates.getCall(0).args[1]);
-        },
-
-        assertPromiseWasReturned: function (returnedPromise, promise) {
-            assert.isObject(promise);
-            assert.same(returnedPromise, promise);
         }
     };
 }()));

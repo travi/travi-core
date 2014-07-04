@@ -12,20 +12,16 @@
     });
 
     function loadTemplate(templateName, templateUrl) {
-        var deferred = new $.Deferred(),
-            promise = deferred.promise();
-
-        loadedTemplates[templateName] = promise;
-
-        $.ajax({
+        var promise = $.ajax({
             url: templateUrl,
             type: 'get',
             dataType: 'text',
             success: function (template) {
                 $.templates(templateName, template);
-                deferred.resolve();
             }
         });
+
+        loadedTemplates[templateName] = promise;
 
         return promise;
     }
