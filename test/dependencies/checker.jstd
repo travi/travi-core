@@ -7,7 +7,7 @@ travi.test.testCase('Dependency Checker Tests', (function () {
         module2 = travi.test.any.string();
 
     function assertPromiseIsNotFullDeferred(promise) {
-        assertUndefined(promise.resolve);
+        refute.defined(promise.resolve);
     }
 
     function loadModule(ns) {
@@ -16,11 +16,11 @@ travi.test.testCase('Dependency Checker Tests', (function () {
     }
 
     function assertNotResolved(promise) {
-        assertEquals('pending', promise.state());
+        assert.equals('pending', promise.state());
     }
 
     function assertResolved(promise) {
-        assertEquals('resolved', promise.state());
+        assert.equals('resolved', promise.state());
     }
 
     return {
@@ -50,20 +50,20 @@ travi.test.testCase('Dependency Checker Tests', (function () {
         'test that init is called if loaded': function () {
             checker.check('travi.' + module1);
 
-            sinon.assert.calledOnce(travi[module1].init);
+            assert.calledOnce(travi[module1].init);
         },
 
         'test that init not called until dependencies are loaded': function () {
             var promise = checker.check('travi.' + module1, {foo: 'travi.' + module2});
 
             assertNotResolved(promise);
-            sinon.assert.notCalled(travi[module1].init);
+            refute.called(travi[module1].init);
 
             loadModule(module2);
 
             assertResolved(promise);
 
-            sinon.assert.calledWith(travi[module1].init, {
+            assert.calledWith(travi[module1].init, {
                 foo: travi[module2]
             });
         },
@@ -75,7 +75,7 @@ travi.test.testCase('Dependency Checker Tests', (function () {
 
             assertResolved(promise);
 
-            sinon.assert.calledWith(travi[module1].init, {
+            assert.calledWith(travi[module1].init, {
                 foo: travi[module2]
             });
         },
@@ -87,7 +87,7 @@ travi.test.testCase('Dependency Checker Tests', (function () {
 
             assertResolved(promise);
 
-            sinon.assert.calledWith(travi[module1].init, {
+            assert.calledWith(travi[module1].init, {
                 foo: travi[module2]
             });
         }

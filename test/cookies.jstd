@@ -20,8 +20,8 @@ travi.test.testCase('CookieTests', (function () {
 
             this.cookies.create(cookieName, cookieValue, this.DAYS_BEFORE_EXP);
 
-            assertTrue(this.cookies.exists(cookieName));
-            assertEquals(cookieValue, this.cookies.value(cookieName));
+            assert.isTrue(this.cookies.exists(cookieName));
+            assert.equals(cookieValue, this.cookies.value(cookieName));
         },
 
         'test cookie gets removed': function () {
@@ -30,7 +30,7 @@ travi.test.testCase('CookieTests', (function () {
 
             this.cookies.remove(cookieToDelete);
 
-            assertFalse(this.cookies.exists(cookieToDelete));
+            assert.isFalse(this.cookies.exists(cookieToDelete));
         },
 
         'test value returned properly when first in list': function () {
@@ -40,7 +40,7 @@ travi.test.testCase('CookieTests', (function () {
             this.cookies.create(desiredCookie, valueOfDesired, this.DAYS_BEFORE_EXP);
             this.cookies.create("extraCookie", "value of extra cookie", this.DAYS_BEFORE_EXP);
 
-            assertEquals(valueOfDesired, this.cookies.value(desiredCookie));
+            assert.equals(valueOfDesired, this.cookies.value(desiredCookie));
         },
 
         'test value returned properly when last in list': function () {
@@ -50,7 +50,7 @@ travi.test.testCase('CookieTests', (function () {
             this.cookies.create("extraCookie", "value of extra cookie", this.DAYS_BEFORE_EXP);
             this.cookies.create(desiredCookie, valueOfDesired, this.DAYS_BEFORE_EXP);
 
-            assertEquals(valueOfDesired, this.cookies.value(desiredCookie));
+            assert.equals(valueOfDesired, this.cookies.value(desiredCookie));
         },
 
         'test value returned properly when in the middle of the list': function () {
@@ -61,7 +61,7 @@ travi.test.testCase('CookieTests', (function () {
             this.cookies.create(desiredCookie, valueOfDesired, this.DAYS_BEFORE_EXP);
             this.cookies.create("extraCookie2", "value of extra cookie", this.DAYS_BEFORE_EXP);
 
-            assertEquals(valueOfDesired, this.cookies.value(desiredCookie));
+            assert.equals(valueOfDesired, this.cookies.value(desiredCookie));
         }
     };
 }()));

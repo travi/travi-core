@@ -5,7 +5,10 @@ module.exports = function (config) {
         files: [
             {pattern: 'templates/**/*.tmpl', included: false},
 
+            'bower_components/travi-test-utils/tools/assert-cache.js',
             'node_modules/karma-jstd-adapter/jstd-adapter.js',
+            'bower_components/travi-test-utils/tools/assert-fix.js',
+
             'bower_components/jquery/dist/jquery.js',
             'bower_components/jsrender/jsrender.js',
             'bower_components/jquery-form/jquery.form.js',

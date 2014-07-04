@@ -27,20 +27,20 @@ travi.test.testCase('Choose Enhancement Version', (function () {
         },
 
         'test cookie values defined as server expects': function () {
-            assertEquals('s', this.enhancements.constants().SMALL_COOKIE_VALUE);
-            assertEquals('l', this.enhancements.constants().LARGE_COOKIE_VALUE);
+            assert.equals('s', this.enhancements.constants().SMALL_COOKIE_VALUE);
+            assert.equals('l', this.enhancements.constants().LARGE_COOKIE_VALUE);
         },
 
         'test mobile choice defined as external code expects': function () {
-            assertEquals('small', this.enhancements.constants().SMALL_SCREEN_CHOICE);
+            assert.equals('small', this.enhancements.constants().SMALL_SCREEN_CHOICE);
         },
 
         'test desktop choice defined as external code expects': function () {
-            assertEquals('large', this.enhancements.constants().LARGE_SCREEN_CHOICE);
+            assert.equals('large', this.enhancements.constants().LARGE_SCREEN_CHOICE);
         },
 
         'test basic choice defined as external code expects': function () {
-            assertEquals('basic', this.enhancements.constants().BASIC_CHOICE);
+            assert.equals('basic', this.enhancements.constants().BASIC_CHOICE);
         },
 
         'test version toggle links added to page': function () {
@@ -50,16 +50,16 @@ travi.test.testCase('Choose Enhancement Version', (function () {
                 choicesExplainationId = 'explainChooseVersion',
                 $enhancementChoices = $('#' + this.choiceListId + ' li');
 
-            assertEquals('switch to version', $('#' + choicesExplainationId).text());
-            assertEquals(1, $('footer ul').length);
+            assert.equals('switch to version', $('#' + choicesExplainationId).text());
+            assert.equals(1, $('footer ul').length);
 
-            assertEquals(this.choiceListId, $('footer ul').attr('id'));
-            assertEquals(2, $enhancementChoices.length);
-            assertEquals(this.enhancements.constants().BASIC_CHOICE, $enhancementChoices.eq(0).text());
+            assert.equals(this.choiceListId, $('footer ul').attr('id'));
+            assert.equals(2, $enhancementChoices.length);
+            assert.equals(this.enhancements.constants().BASIC_CHOICE, $enhancementChoices.eq(0).text());
 
-            assertEquals(this.enhancements.constants().BASIC_CHOICE + 'Version', $enhancementChoices.eq(0).attr('id'));
-            assertEquals(choiceGroupId, $('#' + this.choiceListId).parent().attr('id'));
-            assertEquals(choiceGroupId, $('#' + choicesExplainationId).parent().attr('id'));
+            assert.equals(this.enhancements.constants().BASIC_CHOICE + 'Version', $enhancementChoices.eq(0).attr('id'));
+            assert.equals(choiceGroupId, $('#' + this.choiceListId).parent().attr('id'));
+            assert.equals(choiceGroupId, $('#' + choicesExplainationId).parent().attr('id'));
         },
 
         'test small-screen link shown when large-screen version active': function () {
@@ -67,12 +67,11 @@ travi.test.testCase('Choose Enhancement Version', (function () {
 
             this.enhancements.init();
 
-            var $enhancementChoices = $('#' + this.choiceListId + ' li');
-
-            var $link = $enhancementChoices.eq(1);
-            assertEquals('small screen', $link.text().trim());
-            assertEquals(this.enhancements.constants().SMALL_SCREEN_CHOICE + 'Version', $link.attr('id'));
-            assertTrue($link.hasClass('icon-mobile'));
+            var $enhancementChoices = $('#' + this.choiceListId + ' li'),
+                $link = $enhancementChoices.eq(1);
+            assert.equals('small screen', $link.text().trim());
+            assert.equals(this.enhancements.constants().SMALL_SCREEN_CHOICE + 'Version', $link.attr('id'));
+            assert.isTrue($link.hasClass('icon-mobile'));
         },
 
         'test large-screen link shown when small-screen version active': function () {
@@ -80,12 +79,11 @@ travi.test.testCase('Choose Enhancement Version', (function () {
 
             this.enhancements.init();
 
-            var $enhancementChoices = $('#' + this.choiceListId + ' li');
-
-            var $link = $enhancementChoices.eq(1);
-            assertEquals('large screen', $link.text().trim());
-            assertEquals(this.enhancements.constants().LARGE_SCREEN_CHOICE + 'Version', $link.attr('id'));
-            assertTrue($link.hasClass('icon-desktop'));
+            var $enhancementChoices = $('#' + this.choiceListId + ' li'),
+                $link = $enhancementChoices.eq(1);
+            assert.equals('large screen', $link.text().trim());
+            assert.equals(this.enhancements.constants().LARGE_SCREEN_CHOICE + 'Version', $link.attr('id'));
+            assert.isTrue($link.hasClass('icon-desktop'));
         },
 
         'test Switch to Desktop version': function () {
@@ -98,14 +96,14 @@ travi.test.testCase('Choose Enhancement Version', (function () {
 
             $('#' + constants.LARGE_SCREEN_CHOICE + 'Version').click();
 
-            sinon.assert.calledOnce(this.cookies.create);
-            sinon.assert.calledWith(
+            assert.calledOnce(this.cookies.create);
+            assert.calledWith(
                 this.cookies.create,
                 constants.ENHANCEMENT_VERSION_KEY,
                 constants.LARGE_COOKIE_VALUE,
                 constants.DAYS_BEFORE_ENHANCEMENT_COOKIE_EXPIRATION
             );
-            sinon.assert.calledOnce(this.location.refresh);
+            assert.calledOnce(this.location.refresh);
         },
 
         'test Switch to Mobile version': function () {
@@ -118,14 +116,14 @@ travi.test.testCase('Choose Enhancement Version', (function () {
 
             $('#' + constants.SMALL_SCREEN_CHOICE + 'Version').click();
 
-            sinon.assert.calledOnce(this.cookies.create);
-            sinon.assert.calledWith(
+            assert.calledOnce(this.cookies.create);
+            assert.calledWith(
                 this.cookies.create,
                 constants.ENHANCEMENT_VERSION_KEY,
                 constants.SMALL_COOKIE_VALUE,
                 constants.DAYS_BEFORE_ENHANCEMENT_COOKIE_EXPIRATION
             );
-            sinon.assert.calledOnce(this.location.refresh);
+            assert.calledOnce(this.location.refresh);
         }
     };
 }()));

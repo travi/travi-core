@@ -29,20 +29,17 @@ travi.test.testCase("TemplateTests", (function () {
             ]);
         },
 
-        "test preloading template requests it from the server, caches it, and returns the promise": function () {
+        'test pre-loading template requests it from the server, caches it, and returns the promise': function () {
             var promise,
                 promiseToReturn = {},
                 constructedDeferred = {
                     promise: function () {
                         return promiseToReturn;
                     },
-                    resolve: function () {
-                        return;
-                    }
+                    resolve: sinon.spy()
                 };
 
             sinon.stub(jQuery, 'Deferred').returns(constructedDeferred);
-            sinon.spy(constructedDeferred, 'resolve');
 
             sinon.spy(jQuery, 'templates');
 
@@ -66,23 +63,24 @@ travi.test.testCase("TemplateTests", (function () {
                 templates = {};
             templates[this.templateName] = this.pathToTemplate;
             templates[anotherTemplateName] = pathToAnotherTemplate;
+
             this.templates.preLoad(templates);
 
-            assertEquals(Object.keys(templates).length, $.ajax.callCount);
-            assertEquals(this.pathToTemplate, $.ajax.getCall(0).args[0].url);
-            assertEquals(pathToAnotherTemplate, $.ajax.getCall(1).args[0].url);
+            assert.equals(Object.keys(templates).length, $.ajax.callCount);
+            assert.equals(this.pathToTemplate, $.ajax.getCall(0).args[0].url);
+            assert.equals(pathToAnotherTemplate, $.ajax.getCall(1).args[0].url);
         },
 
         "test that getting a template by name requests it from the server and returns the promise": function () {
             var promise = travi.templates.get(this.templateName);
 
-            assertEquals(
+            assert.equals(
                 '/templates/' + this.templateName + '.tmpl',
                 jQuery.ajax.getCall(0).args[0].url
             );
 
-            assertObject(promise);
-            assertFunction(promise.promise);
+            assert.isObject(promise);
+            assert.isFunction(promise.promise);
         },
 
         "test template is rendered and returned as string": function () {
@@ -97,7 +95,7 @@ travi.test.testCase("TemplateTests", (function () {
 
             this.assertTemplateRenderedWithData(dataForTemplate);
 
-            assertString(renderedTemplate);
+            assert.isString(renderedTemplate);
         },
 
         'test callback called after template loaded from server': function () {
@@ -116,11 +114,11 @@ travi.test.testCase("TemplateTests", (function () {
 
             this.templates.render(this.templateName, dataForTemplate, callback);
 
-            sinon.assert.calledOnce($.render[this.templateName]);
-            sinon.assert.calledWith($.render[this.templateName], dataForTemplate);
+            assert.calledOnce($.render[this.templateName]);
+            assert.calledWith($.render[this.templateName], dataForTemplate);
 
-            sinon.assert.calledOnce(callback);
-            sinon.assert.calledWith(callback, renderedTemplate);
+            assert.calledOnce(callback);
+            assert.calledWith(callback, renderedTemplate);
         },
 
         'test callback not called when template not loaded': function () {
@@ -146,14 +144,14 @@ travi.test.testCase("TemplateTests", (function () {
             travi.templates.get(this.templateName);
             travi.templates.get(this.templateName);
 
-            sinon.assert.calledOnce(jQuery.ajax);
+            assert.calledOnce(jQuery.ajax);
         },
 
         "test that caching does not prevent other templates from loading from server": function () {
             travi.templates.get(this.templateName);
             travi.templates.get('someOtherTemplateName');
 
-            sinon.assert.calledTwice(jQuery.ajax);
+            assert.calledTwice(jQuery.ajax);
         },
 
         'test template can be rendered without data': function () {
@@ -166,7 +164,7 @@ travi.test.testCase("TemplateTests", (function () {
 
         assertTemplateRenderedWithData: function (data) {
             assert(jQuery.render[this.templateName].calledOnce);
-            assertSame(data, jQuery.render[this.templateName].getCall(0).args[0]);
+            assert.same(data, jQuery.render[this.templateName].getCall(0).args[0]);
         },
 
         assertPromiseResolvedAfterCachingTemplate: function (deferred) {
@@ -175,13 +173,13 @@ travi.test.testCase("TemplateTests", (function () {
 
         assertTemplateWasCached: function (templateName, templateAsString) {
             assert(jQuery.templates.calledOnce);
-            assertEquals(templateName, jQuery.templates.getCall(0).args[0]);
-            assertEquals(templateAsString, jQuery.templates.getCall(0).args[1]);
+            assert.equals(templateName, jQuery.templates.getCall(0).args[0]);
+            assert.equals(templateAsString, jQuery.templates.getCall(0).args[1]);
         },
 
         assertPromiseWasReturned: function (returnedPromise, promise) {
-            assertObject(promise);
-            assertSame(returnedPromise, promise);
+            assert.isObject(promise);
+            assert.same(returnedPromise, promise);
         }
     };
 }()));
