@@ -10,6 +10,11 @@ travi.test.testCase("TemplateTests", (function () {
         xhrDeferred.resolve();
     }
 
+    function simulateTemplateAlreadyLoaded() {
+        this.templates.preLoad(this.templateName);
+        simulateSuccessfulAjaxResponse.call(this);
+    }
+
     return {
         templates: travi.templates,
 
@@ -18,11 +23,13 @@ travi.test.testCase("TemplateTests", (function () {
         templateAsString: 'template',
 
         setUp: function () {
-            xhrDeferred = new $.Deferred();
-            xhr = xhrDeferred.promise();
+            xhrDeferred = xhr = ajaxSuccess = null;
 
             sinon.stub(jQuery, 'ajax', function (options) {
                 ajaxSuccess = options.success;
+
+                xhrDeferred = new $.Deferred();
+                xhr = xhrDeferred.promise();
 
                 return xhr;
             });
@@ -56,6 +63,7 @@ travi.test.testCase("TemplateTests", (function () {
 
         'test that template is cached after server responds': function () {
             sinon.spy(jQuery, 'templates');
+            this.templates.preLoad(this.templateName);
             assert.equals(xhr.state(), 'pending');
 
             simulateSuccessfulAjaxResponse.call(this);
@@ -95,6 +103,7 @@ travi.test.testCase("TemplateTests", (function () {
                 dataForTemplate = {
                     data: 'something'
                 };
+            simulateTemplateAlreadyLoaded.call(this);
             sinon.stub(jQuery.render, this.templateName).returns('renderedTemplate');
 
             renderedTemplate = travi.templates.render(this.templateName, dataForTemplate);
