@@ -3,16 +3,16 @@
 
     var constants = (function () {
             var ownProp = Object.prototype.hasOwnProperty,
-                constants = {};
+                constantList = {};
 
             function set(key, value) {
-                if (!ownProp.call(constants, key)) {
-                    constants[key] = value;
+                if (!ownProp.call(constantList, key)) {
+                    constantList[key] = value;
                 }
             }
 
             function get(key) {
-                return constants[key];
+                return constantList[key];
             }
 
             return {
