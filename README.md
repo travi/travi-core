@@ -33,9 +33,11 @@ A collection of JS modules that I have shaped over time to simplify some common 
    * Dependency resolution mechanism
    * Dependency injection upon resolution of said dependencies
    * Lazy-load of dependencies that are not yet loaded
+   * Likely move this out of core to its own library
  * Feature detection
    * Checks for threshold of minimum browser threshold to recieve enhancements beyond "basic"
    * SVG support for icon enhancement (fallback to just text if no support rather than current Grunticon approach)
+   * Likely move this out of core to its own library
  * Templating
    * Support other templating libraries through same API (probably use `content-type` header to determine which)
    * Mustache/Hogan
