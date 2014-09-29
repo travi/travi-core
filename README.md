@@ -9,7 +9,7 @@ A collection of JS modules that I have shaped over time to simplify some common 
 [![githalytics.com alpha](https://cruel-carlota.pagodabox.com/dbf0f99784c157897e7978f91ebe62fe "githalytics.com")](http://githalytics.com/travi/travi-core)
 [![Dependency Status](http://img.shields.io/gemnasium/travi/travi-core.svg?style=flat)](https://gemnasium.com/travi/travi-core)
 
-[![Bower version](http://img.shields.io/bower/v/travi-core.svg)](http://bower.io/search/?q=travi-core)
+[![Bower version](http://img.shields.io/bower/v/travi-core.svg?style=flat)](http://bower.io/search/?q=travi-core)
 
 
 
