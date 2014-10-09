@@ -39,7 +39,7 @@
         }
     }
 
-     function getCookies() {
+    function getCookies() {
         return document.cookie.split(';');
     }
 
@@ -53,7 +53,7 @@
         return date;
     }
 
-     function valueOf(name) {
+    function valueOf(name) {
         return getValueFromCookie(getCookie(name));
     }
 
