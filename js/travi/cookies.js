@@ -3,6 +3,7 @@
 
     function getNameAndValueFromPair(pair) {
         var nameAndValue = pair.split('=');
+
         return {
             name: nameAndValue[0],
             value: nameAndValue[1]
@@ -37,6 +38,8 @@
                 return currentPair;
             }
         }
+
+        return undefined;
     }
 
     function getCookies() {
@@ -49,7 +52,9 @@
 
     function getDateNowAdjustedByDays(days) {
         var date = new Date();
+
         date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+
         return date;
     }
 
@@ -59,11 +64,13 @@
 
     function buildExpiresRelativeToNow(days) {
         var date = getDateNowAdjustedByDays(days);
+
         return '; expires=' + date.toGMTString();
     }
 
     function create(name, value, days) {
         var expires;
+
         if (days) {
             expires = buildExpiresRelativeToNow(days);
         } else {
