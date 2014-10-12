@@ -1,0 +1,59 @@
+travi.test.testCase('SVG Support Detection', (function () {
+    'use strict';
+
+    var enhancements = travi.enhancements,
+        cookies = travi.cookies;
+
+    return {
+        setUp: function () {
+            sinon.stub(cookies, 'value');
+            sinon.stub(cookies, 'create');
+            sinon.stub(cookies, 'exists').withArgs(enhancements.constants().ENHANCEMENT_VERSION_KEY).returns(false);
+        },
+
+        tearDown: function () {
+            travi.test.common.restore([
+                cookies.create,
+                cookies.value,
+                cookies.exists
+            ]);
+            Modernizr.svg = null;
+        },
+
+        'test that cookie created for svg capability when svg is supported by the browser': function () {
+            var svgSupport = true;
+            Modernizr.svg = svgSupport;
+
+            enhancements.init();
+
+            assert.calledWith(
+                cookies.create,
+                'svg',
+                svgSupport,
+                enhancements.constants().DAYS_BEFORE_ENHANCEMENT_COOKIE_EXPIRATION
+            );
+        },
+
+        'test that cookie created for svg capability when svg not supported by browser': function () {
+            var svgSupport = false;
+            Modernizr.svg = svgSupport;
+
+            enhancements.init();
+
+            assert.calledWith(
+                cookies.create,
+                'svg',
+                svgSupport,
+                enhancements.constants().DAYS_BEFORE_ENHANCEMENT_COOKIE_EXPIRATION
+            );
+        },
+
+        'test that cookie is only created if enhancement-version cookie does not already exist': function () {
+            cookies.exists.withArgs(enhancements.constants().ENHANCEMENT_VERSION_KEY).returns(true);
+
+            enhancements.init();
+
+            refute.called(cookies.create);
+        }
+    };
+}()));

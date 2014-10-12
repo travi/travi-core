@@ -37,9 +37,18 @@ travi.templates.preLoad('chooseEnhancement', '/resources/thirdparty/travi-core/t
         }
     }
 
+    function determineSvgSupport() {
+        cookies.create(
+            'svg',
+            Modernizr.svg,
+            DAYS_BEFORE_ENHANCEMENT_COOKIE_EXPIRATION
+        );
+    }
+
     function setInitialEnhancementVersion() {
         if (!cookies.exists(ENHANCEMENT_VERSION_KEY)) {
             detectEnhancementVersion();
+            determineSvgSupport();
         }
     }
 
