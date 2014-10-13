@@ -40,7 +40,7 @@ travi.templates.preLoad('chooseEnhancement', '/resources/thirdparty/travi-core/t
     function determineSvgSupport() {
         cookies.create(
             'svg',
-            Modernizr.svg,
+            Modernizr.svg ? 't' : 'f',
             DAYS_BEFORE_ENHANCEMENT_COOKIE_EXPIRATION
         );
     }

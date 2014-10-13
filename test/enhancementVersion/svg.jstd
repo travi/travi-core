@@ -21,29 +21,27 @@ travi.test.testCase('SVG Support Detection', (function () {
         },
 
         'test that cookie created for svg capability when svg is supported by the browser': function () {
-            var svgSupport = true;
-            Modernizr.svg = svgSupport;
+            Modernizr.svg = true;
 
             enhancements.init();
 
             assert.calledWith(
                 cookies.create,
                 'svg',
-                svgSupport,
+                't',
                 enhancements.constants().DAYS_BEFORE_ENHANCEMENT_COOKIE_EXPIRATION
             );
         },
 
         'test that cookie created for svg capability when svg not supported by browser': function () {
-            var svgSupport = false;
-            Modernizr.svg = svgSupport;
+            Modernizr.svg = false;
 
             enhancements.init();
 
             assert.calledWith(
                 cookies.create,
                 'svg',
-                svgSupport,
+                'f',
                 enhancements.constants().DAYS_BEFORE_ENHANCEMENT_COOKIE_EXPIRATION
             );
         },
