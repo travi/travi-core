@@ -20,7 +20,7 @@ module.exports = function (config) {
             'bower_components/travi-test-utils/tools/common.js',
             'js/travi/templates.js',
             'test/resources/load-templates.js',
-            'js/travi/location.js',
+            'js/travi/browserProxy.js',
             'js/travi/events.js',
             'js/travi/dependencies/*.js',
             'bower_components/travi-test-utils/test-init.js',
