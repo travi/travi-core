@@ -1,0 +1,8 @@
+dist:
+  options:
+    sourceMap: true
+  files:
+    'dist/travi-core.min.js':
+      - 'js/travi.js'
+      - 'js/travi/templates.js'
+      - 'js/**/*.js'

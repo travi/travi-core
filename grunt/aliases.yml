@@ -8,3 +8,5 @@ ui:
   - karma:ui
 
 default: gates
+
+build: uglify
