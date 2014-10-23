@@ -2,11 +2,6 @@ gates:
   - jslint
   - karma
 
-ui:
-  - jslint:ui
-  - jslint:uiTest
-  - karma:ui
-
 default: gates
 
 build: uglify
