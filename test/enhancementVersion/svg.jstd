@@ -2,20 +2,23 @@ travi.test.testCase('SVG Support Detection', (function () {
     'use strict';
 
     var enhancements = travi.enhancements,
-        cookies = travi.cookies;
+        cookies = travi.cookies,
+        browserProxy = travi.location;
 
     return {
         setUp: function () {
             sinon.stub(cookies, 'value');
             sinon.stub(cookies, 'create');
             sinon.stub(cookies, 'exists').withArgs(enhancements.constants().ENHANCEMENT_VERSION_KEY).returns(false);
+            sinon.stub(browserProxy, 'refresh');
         },
 
         tearDown: function () {
             travi.test.common.restore([
                 cookies.create,
                 cookies.value,
-                cookies.exists
+                cookies.exists,
+                browserProxy.refresh
             ]);
             Modernizr.svg = null;
         },
@@ -31,6 +34,7 @@ travi.test.testCase('SVG Support Detection', (function () {
                 't',
                 enhancements.constants().DAYS_BEFORE_ENHANCEMENT_COOKIE_EXPIRATION
             );
+            refute(browserProxy.refresh.calledBefore(cookies.create));
         },
 
         'test that cookie created for svg capability when svg not supported by browser': function () {

@@ -47,8 +47,8 @@ travi.templates.preLoad('chooseEnhancement', '/resources/thirdparty/travi-core/t
 
     function setInitialEnhancementVersion() {
         if (!cookies.exists(ENHANCEMENT_VERSION_KEY)) {
-            detectEnhancementVersion();
             determineSvgSupport();
+            detectEnhancementVersion();
         }
     }
 
