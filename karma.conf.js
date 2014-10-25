@@ -17,7 +17,7 @@ module.exports = function (config) {
             'bower_components/travi-test-utils/stubs/momentStub.js',
 
             'js/travi.js',
-            'bower_components/travi-test-utils/tools/common.js',
+            'bower_components/travi-test-utils/tools/*.js',
             'js/travi/templates.js',
             'test/resources/load-templates.js',
             'js/travi/browserProxy.js',
@@ -29,6 +29,10 @@ module.exports = function (config) {
             'bower_components/travi-test-utils/stubs/ajaxStub.js',
 
             'test/**/*.jstd'
+        ],
+
+        exclude: [
+            'bower_components/travi-test-utils/tools/cucumber-world.js'
         ],
 
         browsers: ['PhantomJS']

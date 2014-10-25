@@ -5,7 +5,7 @@
         global.location.reload();
     };
 
-    travi.namespace('location', {
+    travi.namespace('browserProxy', {
         refresh: refresh
     });
 }(this, travi));

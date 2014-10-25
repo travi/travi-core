@@ -5,7 +5,7 @@ travi.templates.preLoad('chooseEnhancement', '/resources/thirdparty/travi-core/t
 
     var templates = travi.templates,
         cookies = travi.cookies,
-        location = travi.location,
+        browserProxy = travi.browserProxy,
 
         ENHANCEMENT_VERSION_KEY = 'ev',
         DAYS_BEFORE_ENHANCEMENT_COOKIE_EXPIRATION = 10,
@@ -21,12 +21,12 @@ travi.templates.preLoad('chooseEnhancement', '/resources/thirdparty/travi-core/t
             versionKey,
             DAYS_BEFORE_ENHANCEMENT_COOKIE_EXPIRATION
         );
-        location.refresh();
+        browserProxy.refresh();
     }
 
     function resetVersion() {
         cookies.remove(ENHANCEMENT_VERSION_KEY);
-        location.refresh();
+        browserProxy.refresh();
     }
 
     function detectEnhancementVersion() {

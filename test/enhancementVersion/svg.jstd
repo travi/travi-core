@@ -3,7 +3,7 @@ travi.test.testCase('SVG Support Detection', (function () {
 
     var enhancements = travi.enhancements,
         cookies = travi.cookies,
-        browserProxy = travi.location;
+        browserProxy = travi.browserProxy;
 
     return {
         setUp: function () {

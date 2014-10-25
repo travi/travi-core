@@ -2,7 +2,7 @@ travi.test.testCase('Choose Enhancement Version', (function () {
     'use strict';
 
     return {
-        location: travi.location,
+        browserProxy: travi.browserProxy,
         templates: travi.templates,
         cookies: travi.cookies,
         enhancements: travi.enhancements,
@@ -11,7 +11,7 @@ travi.test.testCase('Choose Enhancement Version', (function () {
 
         setUp: function () {
             $('body').append('<footer></footer>');
-            sinon.stub(this.location, 'refresh');
+            sinon.stub(this.browserProxy, 'refresh');
             sinon.stub(Modernizr, 'mq');
             sinon.stub(this.cookies, 'create');
             sinon.stub(this.cookies, 'value');
@@ -19,7 +19,7 @@ travi.test.testCase('Choose Enhancement Version', (function () {
 
         tearDown: function () {
             travi.test.common.restore([
-                this.location.refresh,
+                this.browserProxy.refresh,
                 this.cookies.create,
                 this.cookies.value,
                 Modernizr.mq
@@ -92,7 +92,7 @@ travi.test.testCase('Choose Enhancement Version', (function () {
 
             this.enhancements.init();
             this.cookies.create.reset();
-            this.location.refresh.reset();
+            this.browserProxy.refresh.reset();
 
             $('#' + constants.LARGE_SCREEN_CHOICE + 'Version').click();
 
@@ -103,7 +103,7 @@ travi.test.testCase('Choose Enhancement Version', (function () {
                 constants.LARGE_COOKIE_VALUE,
                 constants.DAYS_BEFORE_ENHANCEMENT_COOKIE_EXPIRATION
             );
-            assert.calledOnce(this.location.refresh);
+            assert.calledOnce(this.browserProxy.refresh);
         },
 
         'test Switch to Mobile version': function () {
@@ -112,7 +112,7 @@ travi.test.testCase('Choose Enhancement Version', (function () {
 
             this.enhancements.init();
             this.cookies.create.reset();
-            this.location.refresh.reset();
+            this.browserProxy.refresh.reset();
 
             $('#' + constants.SMALL_SCREEN_CHOICE + 'Version').click();
 
@@ -123,7 +123,7 @@ travi.test.testCase('Choose Enhancement Version', (function () {
                 constants.SMALL_COOKIE_VALUE,
                 constants.DAYS_BEFORE_ENHANCEMENT_COOKIE_EXPIRATION
             );
-            assert.calledOnce(this.location.refresh);
+            assert.calledOnce(this.browserProxy.refresh);
         }
     };
 }()));
