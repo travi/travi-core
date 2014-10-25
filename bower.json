@@ -9,6 +9,6 @@
     "jsrender": "latest"
   },
   "devDependencies": {
-    "travi-test-utils": "latest"
+    "travi-test-utils": "0.5.0"
   }
 }
