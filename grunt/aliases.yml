@@ -1,7 +1,8 @@
+build: uglify
+
 gates:
   - jslint
   - karma
 
 default: gates
 
-build: uglify

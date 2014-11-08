@@ -5,4 +5,5 @@ dist:
     'dist/travi-core.min.js':
       - 'js/travi.js'
       - 'js/travi/templates.js'
+      - 'js/travi/browserProxy  .js'
       - 'js/**/*.js'
