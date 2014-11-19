@@ -111,7 +111,6 @@ travi.test.testCase('Choose Enhancement Version', (function () {
         },
 
         'test Switch to Mobile version': function () {
-            var constants = this.enhancements.constants.get();
             this.cookies.value.returns(constants.LARGE_COOKIE_VALUE);
 
             this.enhancements.choices.init();
