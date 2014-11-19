@@ -1,6 +1,8 @@
 travi.test.testCase('Choose Enhancement Version', (function () {
     'use strict';
 
+    var constants = travi.enhancements.constants.get();
+
     return {
         browserProxy: travi.browserProxy,
         templates: travi.templates,
@@ -16,6 +18,7 @@ travi.test.testCase('Choose Enhancement Version', (function () {
             sinon.stub(Modernizr, 'mq');
             sinon.stub(this.cookies, 'create');
             sinon.stub(this.cookies, 'value');
+            sinon.stub(this.cookies, 'remove');
         },
 
         tearDown: function () {
@@ -23,6 +26,7 @@ travi.test.testCase('Choose Enhancement Version', (function () {
                 this.browserProxy.refresh,
                 this.cookies.create,
                 this.cookies.value,
+                this.cookies.remove,
                 Modernizr.mq
             ]);
         },
@@ -88,7 +92,6 @@ travi.test.testCase('Choose Enhancement Version', (function () {
         },
 
         'test Switch to Desktop version': function () {
-            var constants = this.enhancements.constants.get();
             this.cookies.value.returns(constants.SMALL_COOKIE_VALUE);
 
             this.enhancements.choices.init();
@@ -124,6 +127,15 @@ travi.test.testCase('Choose Enhancement Version', (function () {
                 constants.SMALL_COOKIE_VALUE,
                 constants.DAYS_BEFORE_ENHANCEMENT_COOKIE_EXPIRATION
             );
+            assert.calledOnce(this.browserProxy.refresh);
+        },
+
+        'test that the screen size can be re-detected': function () {
+            this.enhancements.choices.init();
+
+            $('#detectVersion').click();
+
+            assert.calledWith(this.cookies.remove, constants.ENHANCEMENT_VERSION_KEY);
             assert.calledOnce(this.browserProxy.refresh);
         }
     };

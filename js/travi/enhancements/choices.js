@@ -16,6 +16,38 @@ travi.templates.preLoad('chooseEnhancement', '/resources/thirdparty/travi-core/t
         browserProxy.refresh();
     }
 
+    function configureVersionToggle(choice, sizeVersion) {
+        $('#' + choice + 'Version').click(function () {
+            persist.update(sizeVersion);
+        });
+    }
+
+    function configureLargeVersionToggle() {
+        configureVersionToggle(constants.LARGE_SCREEN_CHOICE, constants.LARGE_COOKIE_VALUE);
+    }
+
+    function configureSmallVersionToggle() {
+        configureVersionToggle(constants.SMALL_SCREEN_CHOICE, constants.SMALL_COOKIE_VALUE);
+    }
+
+    function configureVersionToggles() {
+        configureLargeVersionToggle();
+        configureSmallVersionToggle();
+
+        $('#detectVersion').click(resetVersion);
+    }
+
+    function addVersionTogglesToDom(alternateEnhancement, alternateEnhancementText, alternateCommonName) {
+        templates.render('chooseEnhancement', {
+            alternateEnhancement: alternateEnhancement,
+            alternateEnhancementText: alternateEnhancementText,
+            alternateCommonName: alternateCommonName
+        }, function (renderedTemplate) {
+            $('footer').append(renderedTemplate);
+            configureVersionToggles();
+        });
+    }
+
     function addLinksToChooseVersion() {
         var currentEnhancement = cookies.value(constants.ENHANCEMENT_VERSION_KEY),
             alternateEnhancement,
@@ -33,23 +65,7 @@ travi.templates.preLoad('chooseEnhancement', '/resources/thirdparty/travi-core/t
             alternateCommonName = 'mobile';
         }
 
-        templates.render('chooseEnhancement', {
-            alternateEnhancement: alternateEnhancement,
-            alternateEnhancementText: alternateEnhancementText,
-            alternateCommonName: alternateCommonName
-        }, function (renderedTemplate) {
-            $('footer').append(renderedTemplate);
-
-            $('#' + constants.LARGE_SCREEN_CHOICE + 'Version').click(function () {
-                persist.update(constants.LARGE_COOKIE_VALUE);
-            });
-
-            $('#' + constants.SMALL_SCREEN_CHOICE + 'Version').click(function () {
-                persist.update(constants.SMALL_COOKIE_VALUE);
-            });
-
-            $('#detectVersion').click(resetVersion);
-        });
+        addVersionTogglesToDom(alternateEnhancement, alternateEnhancementText, alternateCommonName);
     }
 
     function init() {
