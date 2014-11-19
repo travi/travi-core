@@ -15,7 +15,6 @@ travi.test.testCase('Screen Size Detection', (function () {
 
         tearDown: function () {
             travi.test.common.restore([
-                this.templates.get,
                 Modernizr.mq,
                 travi.browserProxy.refresh,
                 this.cookies.exists,
