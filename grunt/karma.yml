@@ -3,7 +3,7 @@ unit:
   singleRun: true
 
   preprocessors:
-    "js/**/!(browserProxy).js": 'coverage'
+    "js/**/!(browserProxy|utilities).js": 'coverage'
 
   reporters:
     - 'progress'
