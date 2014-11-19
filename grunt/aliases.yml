@@ -1,8 +1,11 @@
-build: uglify
+build:
+  - uglify
+  - karma:criticalDist
 
 gates:
   - jslint
-  - karma
+  - karma:core
+  - karma:critical
 
 default: gates
 

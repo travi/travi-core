@@ -1,7 +1,11 @@
 critical:
-  configFile: 'karma.conf.js'
+  configFile: 'critical.conf.js'
   singleRun: true
-  
+
+criticalDist:
+  configFile: 'critical-dist.conf.js'
+  singleRun: true
+
 core:
   configFile: 'karma.conf.js'
   singleRun: true

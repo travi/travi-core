@@ -5,5 +5,16 @@ dist:
     'dist/travi-core.min.js':
       - 'js/travi.js'
       - 'js/travi/templates.js'
-      - 'js/travi/browserProxy  .js'
+      - 'js/travi/browserProxy.js'
       - 'js/**/*.js'
+critical:
+  options:
+    sourceMap: true
+  files:
+    'dist/travi-critical.min.js':
+      - 'js/travi.js'
+      - 'js/travi/browserProxy.js'
+      - 'js/travi/cookies.js'
+      - 'js/travi/enhancements/constants.js'
+      - 'js/travi/enhancements/persist.js'
+      - 'js/travi/enhancements/detection.js'
