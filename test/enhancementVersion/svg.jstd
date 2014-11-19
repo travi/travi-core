@@ -9,7 +9,7 @@ travi.test.testCase('SVG Support Detection', (function () {
         setUp: function () {
             sinon.stub(cookies, 'value');
             sinon.stub(cookies, 'create');
-            sinon.stub(cookies, 'exists').withArgs(enhancements.constants().ENHANCEMENT_VERSION_KEY).returns(false);
+            sinon.stub(cookies, 'exists').withArgs(enhancements.constants.get().ENHANCEMENT_VERSION_KEY).returns(false);
             sinon.stub(browserProxy, 'refresh');
         },
 
@@ -26,13 +26,13 @@ travi.test.testCase('SVG Support Detection', (function () {
         'test that cookie created for svg capability when svg is supported by the browser': function () {
             Modernizr.svg = true;
 
-            enhancements.init();
+            enhancements.detection.init();
 
             assert.calledWith(
                 cookies.create,
                 'svg',
                 't',
-                enhancements.constants().DAYS_BEFORE_ENHANCEMENT_COOKIE_EXPIRATION
+                enhancements.constants.get().DAYS_BEFORE_ENHANCEMENT_COOKIE_EXPIRATION
             );
             refute(browserProxy.refresh.calledBefore(cookies.create));
         },
@@ -40,20 +40,20 @@ travi.test.testCase('SVG Support Detection', (function () {
         'test that cookie created for svg capability when svg not supported by browser': function () {
             Modernizr.svg = false;
 
-            enhancements.init();
+            enhancements.detection.init();
 
             assert.calledWith(
                 cookies.create,
                 'svg',
                 'f',
-                enhancements.constants().DAYS_BEFORE_ENHANCEMENT_COOKIE_EXPIRATION
+                enhancements.constants.get().DAYS_BEFORE_ENHANCEMENT_COOKIE_EXPIRATION
             );
         },
 
         'test that cookie is only created if enhancement-version cookie does not already exist': function () {
-            cookies.exists.withArgs(enhancements.constants().ENHANCEMENT_VERSION_KEY).returns(true);
+            cookies.exists.withArgs(enhancements.constants.get().ENHANCEMENT_VERSION_KEY).returns(true);
 
-            enhancements.init();
+            enhancements.detection.init();
 
             refute.called(cookies.create);
         }

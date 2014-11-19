@@ -22,7 +22,12 @@ module.exports = function (config) {
             'test/resources/load-templates.js',
             'js/travi/browserProxy.js',
             'js/travi/events.js',
+            'js/travi/cookies.js',
             'js/travi/dependencies/*.js',
+            'js/travi/enhancements/constants.js',
+            'js/travi/enhancements/persist.js',
+            'js/travi/enhancements/detection.js',
+            'js/travi/enhancements.js',
             'bower_components/travi-test-utils/test-init.js',
             'js/**/*.js',
 
