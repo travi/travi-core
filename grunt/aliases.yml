@@ -1,6 +1,5 @@
 build:
   - uglify
-  - karma:criticalDist
 
 gates:
   - jslint
