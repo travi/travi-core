@@ -6,6 +6,10 @@ dist:
       - 'js/travi.js'
       - 'js/travi/templates.js'
       - 'js/travi/browserProxy.js'
+      - 'js/travi/cookies.js'
+      - 'js/travi/enhancements/constants.js'
+      - 'js/travi/enhancements/persist.js'
+      - 'js/travi/enhancements/detection.js'
       - 'js/**/*.js'
 critical:
   options:
