@@ -15,10 +15,10 @@ module.exports = function (config) {
             'bower_components/travi-test-utils/tools/*.js',
             'js/travi/browserProxy.js',
             'js/travi/cookies.js',
+            'bower_components/travi-test-utils/test-init.js',
             'js/travi/enhancements/constants.js',
             'js/travi/enhancements/persist.js',
             'js/travi/enhancements/detection.js',
-            'bower_components/travi-test-utils/test-init.js',
 
             'test/cookies.jstd',
             'test/enhancements/screenSize.jstd'

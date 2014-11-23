@@ -40,4 +40,6 @@
         isSmallScreen: isSmallScreen,
         init: init
     });
+
+    init();
 }(travi));

@@ -24,11 +24,10 @@ module.exports = function (config) {
             'js/travi/events.js',
             'js/travi/cookies.js',
             'js/travi/dependencies/*.js',
+            'bower_components/travi-test-utils/test-init.js',
             'js/travi/enhancements/constants.js',
             'js/travi/enhancements/persist.js',
             'js/travi/enhancements/detection.js',
-            'js/travi/enhancements.js',
-            'bower_components/travi-test-utils/test-init.js',
             'js/**/*.js',
 
             'bower_components/travi-test-utils/stubs/ajaxStub.js',
