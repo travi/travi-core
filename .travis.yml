@@ -5,7 +5,7 @@ node_js:
 
 before_script:
   - npm install -g bower
-  - bower install
+  - bower install --config.interactive=false
   - npm install -g grunt-cli
 
 after_script: grunt coveralls
