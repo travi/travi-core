@@ -7,5 +7,6 @@ install:
   - npm install -g bower
   - bower install --config.interactive=false
   - npm install -g grunt-cli
+  - npm install
 
 after_script: grunt coveralls
