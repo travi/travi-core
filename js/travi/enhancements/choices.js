@@ -10,7 +10,6 @@ travi.templates.preLoad('chooseEnhancement', '/resources/thirdparty/travi-core/t
         constants = travi.enhancements.constants.get(),
         persist = travi.enhancements.persist;
 
-
     function resetVersion() {
         cookies.remove(constants.ENHANCEMENT_VERSION_KEY);
         browserProxy.refresh();

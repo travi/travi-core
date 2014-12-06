@@ -1,0 +1,12 @@
+{
+    "validateQuoteMarks": "'",
+    "requireCamelCaseOrUpperCaseIdentifiers": true,
+    "validateLineBreaks": "LF",
+    "disallowMultipleLineBreaks": true,
+    "maximumLineLength": 120,
+    "requireCapitalizedConstructors": true,
+
+    "excludeFiles": [
+        "doc_root/resources/js/travi/org/admin/tools/info.js"
+    ]
+}

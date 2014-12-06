@@ -1,5 +1,5 @@
 (function (global) {
-    "use strict";
+    'use strict';
 
     var constants = (function () {
             var ownProp = Object.prototype.hasOwnProperty,
@@ -59,13 +59,13 @@
     }
 
     function getStyleSheet(sheetUrl) {
-        var link = document.createElement("link");
+        var link = document.createElement('link');
 
-        link.setAttribute("rel", "stylesheet");
-        link.setAttribute("type", "text/css");
-        link.setAttribute("href", sheetUrl);
+        link.setAttribute('rel', 'stylesheet');
+        link.setAttribute('type', 'text/css');
+        link.setAttribute('href', sheetUrl);
 
-        document.getElementsByTagName("head")[0].appendChild(link);
+        document.getElementsByTagName('head')[0].appendChild(link);
     }
 
     function namespace(ns, provided) {

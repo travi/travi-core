@@ -1,5 +1,5 @@
 (function (travi) {
-    "use strict";
+    'use strict';
 
     /*!
         JavaScript: The Good Parts by Douglas Crockford.

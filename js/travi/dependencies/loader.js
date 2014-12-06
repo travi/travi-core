@@ -1,5 +1,5 @@
 (function (travi, global) {
-    "use strict";
+    'use strict';
 
     var PATH_TO_MODULES = '/resources/js/',
 

@@ -1,5 +1,5 @@
 (function (travi) {
-    "use strict";
+    'use strict';
 
     var TEMPLATE_DIRECTORY = '/templates/',
         TEMPLATE_EXT = '.tmpl',

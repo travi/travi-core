@@ -1,10 +1,17 @@
 build:
   - uglify
 
-gates:
+lint:
   - jslint
+  - jscs:dist
+
+test:
   - karma:core
   - karma:critical
+
+gates:
+  - lint
+  - test
 
 default: gates
 

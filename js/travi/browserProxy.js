@@ -1,5 +1,5 @@
 (function (global, travi) {
-    "use strict";
+    'use strict';
 
     var refresh = function () {
         global.location.reload();
