@@ -2,7 +2,17 @@
   "name": "travi-core",
   "version": "0.11.1",
   "ignore": [
-    "test"
+    "test",
+    "*.conf.js",
+    ".bowerrc",
+    "package.json",
+    ".travis.yml",
+    ".gitignore",
+    "grunt",
+    "Gruntfile.js",
+    "README.md",
+    ".editorconfig",
+    ".jscsrc"
   ],
   "dependencies": {
     "amplify": "1.1.0",
