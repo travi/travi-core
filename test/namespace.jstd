@@ -1,9 +1,9 @@
 (function () {
-    "use strict";
+    'use strict';
 
     var checker = travi.dependencies.checker;
 
-    travi.test.testCase("NamespaceTest", {
+    travi.test.testCase('NamespaceTest', {
         setUp: function () {
             sinon.stub(checker, 'check');
         },
@@ -15,43 +15,43 @@
             delete travi.nstest;
         },
 
-        "test should create non-existent object": function () {
-            travi.namespace("nstest");
+        'test should create non-existent object': function () {
+            travi.namespace('nstest');
 
             assert.isObject(travi.nstest);
         },
 
-        "test should not overwrite existing objects": function () {
+        'test should not overwrite existing objects': function () {
             travi.nstest = {nested: {}};
-            var result = travi.namespace("nstest.nested");
+            var result = travi.namespace('nstest.nested');
 
             assert.same(travi.nstest.nested, result);
         },
 
-        "test only create missing parts": function () {
+        'test only create missing parts': function () {
             var existing = {};
             travi.nstest = {nested: {existing: existing}};
 
-            travi.namespace("nstest.nested.ui");
+            travi.namespace('nstest.nested.ui');
 
             assert.same(existing, travi.nstest.nested.existing);
             assert.isObject(travi.nstest.nested.ui);
         },
 
-        "test fill namespace with provided object": function () {
+        'test fill namespace with provided object': function () {
             var provided = {subObject: {}};
 
-            travi.namespace("nstest", provided);
+            travi.namespace('nstest', provided);
 
             assert.same(provided, travi.nstest);
         },
 
-        "test provided only placed at full depth namespace": function () {
+        'test provided only placed at full depth namespace': function () {
             var provided = {subObject: {}},
                 existing = {};
             travi.nstest = {nested: {existing: existing}};
 
-            travi.namespace("nstest.nested.ui.provided", provided);
+            travi.namespace('nstest.nested.ui.provided', provided);
 
             assert.same(provided, travi.nstest.nested.ui.provided);
             refute.same(provided, travi.nstest.nested.ui);

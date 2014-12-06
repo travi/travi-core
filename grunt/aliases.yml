@@ -3,7 +3,7 @@ build:
 
 lint:
   - jslint
-  - jscs:dist
+  - jscs
 
 test:
   - karma:core

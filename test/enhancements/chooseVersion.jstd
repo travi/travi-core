@@ -62,7 +62,10 @@ travi.test.testCase('Choose Enhancement Version', (function () {
             assert.equals(2, $enhancementChoices.length);
             assert.equals(this.enhancements.constants.get().BASIC_CHOICE, $enhancementChoices.eq(0).text());
 
-            assert.equals(this.enhancements.constants.get().BASIC_CHOICE + 'Version', $enhancementChoices.eq(0).attr('id'));
+            assert.equals(
+                this.enhancements.constants.get().BASIC_CHOICE + 'Version',
+                $enhancementChoices.eq(0).attr('id')
+            );
             assert.equals(choiceGroupId, $('#' + this.choiceListId).parent().attr('id'));
             assert.equals(choiceGroupId, $('#' + choicesExplanationId).parent().attr('id'));
         },

@@ -1,19 +1,19 @@
 (function () {
-    "use strict";
+    'use strict';
 
-    travi.test.testCase("ConstantsTest", {
+    travi.test.testCase('ConstantsTest', {
         setUp: function () {
             this.key = 'CONST';
             this.value = 'some value';
         },
 
-        "test should store constant key and value": function () {
+        'test should store constant key and value': function () {
             travi.constants.set(this.key, this.value);
 
             assert.equals(this.value, travi.constants.get(this.key));
         },
 
-        "test constant cannot be overridden": function () {
+        'test constant cannot be overridden': function () {
             travi.constants.set(this.key, this.value);
 
             travi.constants.set(this.key, 'some other value');
@@ -24,7 +24,7 @@
             assert.equals(this.value, travi.constants.get(this.key));
         },
 
-        "test constants should be exposed twice (correct name for this pattern?) from the travi object API": function () {
+        'test constants should be exposed twice from the travi object API': function () {
             assert.isObject(travi.enableConstants);
             assert.same(travi.constants, travi.enableConstants);
         }

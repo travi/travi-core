@@ -1,4 +1,4 @@
-travi.test.testCase("TemplateTests", (function () {
+travi.test.testCase('TemplateTests', (function () {
     'use strict';
 
     var pathToTemplate = '/path/to/template',
@@ -112,7 +112,7 @@ travi.test.testCase("TemplateTests", (function () {
             assert.equals(promise.state(), 'resolved');
         },
 
-        "test that getting a template by name requests it from the server and returns the promise": function () {
+        'test that getting a template by name requests it from the server and returns the promise': function () {
             var promise = travi.templates.get(this.templateName);
 
             assert.calledWith(jQuery.ajax, sinon.match({url: '/templates/' + this.templateName + '.tmpl'}));
@@ -121,7 +121,7 @@ travi.test.testCase("TemplateTests", (function () {
             assert.isFunction(promise.promise);
         },
 
-        "test template is rendered and returned as string": function () {
+        'test template is rendered and returned as string': function () {
             var renderedTemplate,
                 dataForTemplate = {
                     data: 'something'
@@ -167,7 +167,7 @@ travi.test.testCase("TemplateTests", (function () {
             refute.called(callback);
         },
 
-        "test that template is not requested from server if already cached": function () {
+        'test that template is not requested from server if already cached': function () {
             travi.templates.get(this.templateName);
             $.ajax.reset();
 
@@ -176,7 +176,7 @@ travi.test.testCase("TemplateTests", (function () {
             refute.called(jQuery.ajax);
         },
 
-        "test that caching does not prevent other templates from loading from server": function () {
+        'test that caching does not prevent other templates from loading from server': function () {
             travi.templates.get(this.templateName);
             travi.templates.get('someOtherTemplateName');
 
