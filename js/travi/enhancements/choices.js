@@ -74,4 +74,6 @@ travi.templates.preLoad('chooseEnhancement', '/resources/thirdparty/travi-core/t
     travi.namespace('enhancements.choices', {
         init: init
     });
+
+    init();
 }(travi));
