@@ -18,8 +18,6 @@
   "dependencies": {
     "amplify": "1.1.0",
     "jquery": "1.11.x",
-    "jquery-form": "3.37.x",
-    "jquery.validation": "1.11.x",
     "jsrender": "latest"
   },
   "devDependencies": {
