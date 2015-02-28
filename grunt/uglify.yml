@@ -4,6 +4,7 @@ dist:
   files:
     'dist/travi-core.min.js':
       - 'js/travi.js'
+      - 'js/travi/register.js'
       - 'js/travi/templates.js'
       - 'js/travi/browserProxy.js'
       - 'js/travi/cookies.js'

@@ -74,8 +74,6 @@
 
     function register(ns, provided, dependencies) {
         namespace.call(this, ns, provided);
-
-        travi.dependencies.checker.check('travi.' + ns, dependencies);
     }
 
     global.travi = {

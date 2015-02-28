@@ -21,7 +21,9 @@ module.exports = function (config) {
             'js/travi/enhancements/detection.js',
 
             'test/cookies.jstd',
-            'test/enhancements/screenSize.jstd'
+            'test/enhancements/screenSize.jstd',
+            'test/namespace.jstd',
+            'test/critical.jstd'
         ],
 
         exclude: [

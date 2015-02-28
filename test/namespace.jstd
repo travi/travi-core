@@ -1,17 +1,8 @@
 (function () {
     'use strict';
 
-    var checker = travi.dependencies.checker;
-
     travi.test.testCase('NamespaceTest', {
-        setUp: function () {
-            sinon.stub(checker, 'check');
-        },
-
         tearDown: function () {
-            travi.test.common.restore([
-                checker.check
-            ]);
             delete travi.nstest;
         },
 
@@ -64,17 +55,6 @@
             travi.register('nstest', provided);
 
             assert.same(provided, travi.nstest);
-        },
-
-        'test that checker gets called when namespacing via register': function () {
-            var namespace = 'nstest',
-                dependencies = {
-                    foo: 'bar'
-                };
-
-            travi.register(namespace, {}, dependencies);
-
-            assert.calledWith(checker.check, 'travi.' + namespace, dependencies);
         }
     });
 }());
