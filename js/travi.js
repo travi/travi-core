@@ -72,7 +72,7 @@
         return putIn(this, ns, provided || {});
     }
 
-    function register(ns, provided, dependencies) {
+    function register(ns, provided) {
         namespace.call(this, ns, provided);
     }
 
