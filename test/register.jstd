@@ -15,6 +15,14 @@ travi.test.testCase('register with dependencies tests', (function () {
             delete travi.nstest;
         },
 
+        'test that register namespaces provided object': function () {
+            var provided = {};
+
+            travi.register('nstest', provided);
+
+            assert.same(provided, travi.nstest);
+        },
+
         'test that checker gets called when namespacing via register': function () {
             var namespace = 'nstest',
                 dependencies = {

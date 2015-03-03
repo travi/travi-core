@@ -72,14 +72,9 @@
         return putIn(this, ns, provided || {});
     }
 
-    function register(ns, provided) {
-        namespace.call(this, ns, provided);
-    }
-
     global.travi = {
         getStyleSheet   : getStyleSheet,
         namespace       : namespace,
-        register        : register,
         putInObject     : putIn,
         getFromObject   : getFrom,
         constants       : constants,

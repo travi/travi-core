@@ -47,14 +47,6 @@
             assert.same(provided, travi.nstest.nested.ui.provided);
             refute.same(provided, travi.nstest.nested.ui);
             assert.equals({provided: provided}, travi.nstest.nested.ui);
-        },
-
-        'test that register namespaces provided object': function () {
-            var provided = {};
-
-            travi.register('nstest', provided);
-
-            assert.same(provided, travi.nstest);
         }
     });
 }());
