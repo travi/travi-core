@@ -1,26 +1,6 @@
 (function (global) {
     'use strict';
 
-    var constants = (function () {
-            var ownProp = Object.prototype.hasOwnProperty,
-                constantList = {};
-
-            function set(key, value) {
-                if (!ownProp.call(constantList, key)) {
-                    constantList[key] = value;
-                }
-            }
-
-            function get(key) {
-                return constantList[key];
-            }
-
-            return {
-                set: set,
-                get: get
-            };
-        }());
-
     function putIn(object, namespace, provided) {
         var levels = namespace.split('.'),
             levelCount = levels.length,
@@ -76,8 +56,6 @@
         getStyleSheet   : getStyleSheet,
         namespace       : namespace,
         putInObject     : putIn,
-        getFromObject   : getFrom,
-        constants       : constants,
-        enableConstants : constants
+        getFromObject   : getFrom
     };
 }(this));

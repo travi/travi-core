@@ -22,11 +22,6 @@
             }
 
             assert.equals(this.value, travi.constants.get(this.key));
-        },
-
-        'test constants should be exposed twice from the travi object API': function () {
-            assert.isObject(travi.enableConstants);
-            assert.same(travi.constants, travi.enableConstants);
         }
     });
 }());
