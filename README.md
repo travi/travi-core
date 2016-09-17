@@ -10,6 +10,7 @@ A collection of JS modules that I have shaped over time to simplify some common 
 
 [![Bower version](http://img.shields.io/bower/v/travi-core.svg?style=flat)](http://bower.io/search/?q=travi-core)
 
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 
 
 ## Current capabilities
@@ -22,10 +23,10 @@ A collection of JS modules that I have shaped over time to simplify some common 
  * Event bus
    * Use application level events to decouple modules from each other and from the DOM event system
  * Feature detection
-   * Determines browser capabilities 
+   * Determines browser capabilities
    * Sets cookie values to send capability findings, needed by middle-end to determine enhancements to apply, to the server
    * Currently only determines screen size
-    
+
 ## Future enhancements
 
  * Dependencies
